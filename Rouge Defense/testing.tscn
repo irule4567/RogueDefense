@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://h1jrfc40y2b8"]
+[gd_scene load_steps=9 format=3 uid="uid://h1jrfc40y2b8"]
 
 [ext_resource type="Texture2D" uid="uid://cj8ivpf3e30re" path="res://Assets/Green_Tile.png" id="1_flg64"]
 [ext_resource type="Texture2D" uid="uid://vadgd1lyvnhr" path="res://Assets/Brown_Tile.png" id="2_spw6n"]
 [ext_resource type="Script" path="res://MainGrid.gd" id="2_w0saf"]
-[ext_resource type="PackedScene" uid="uid://cw2xtiw1miap6" path="res://Test_Tower.tscn" id="4_y4hrt"]
+[ext_resource type="PackedScene" uid="uid://dnl3yy0n6ugpv" path="res://Test_Enemy.tscn" id="5_cgs8h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ymea"]
 texture = ExtResource("1_flg64")
@@ -78,6 +78,12 @@ tile_size = Vector2i(108, 108)
 sources/1 = SubResource("TileSetAtlasSource_0ymea")
 sources/2 = SubResource("TileSetAtlasSource_vogbq")
 
+[sub_resource type="Curve2D" id="Curve2D_n0c6g"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1056, 52, 0, 0, 0, 0, 0, 52)
+}
+point_count = 2
+
 [node name="Testing" type="Node2D"]
 
 [node name="MainGrid" type="TileMap" parent="."]
@@ -91,11 +97,6 @@ position = Vector2(-164, -92)
 anchor_mode = 0
 
 [node name="Towers" type="Node2D" parent="MainGrid"]
-
-[node name="Test Tower" parent="MainGrid/Towers" instance=ExtResource("4_y4hrt")]
-position = Vector2(-265, -153)
-collision_layer = 2
-collision_mask = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 offset_left = -9.0
@@ -112,5 +113,13 @@ offset_top = -9.0
 offset_right = 113.0
 offset_bottom = 82.0
 text = "TEMP"
+
+[node name="Lane1path" type="Path2D" parent="."]
+curve = SubResource("Curve2D_n0c6g")
+
+[node name="Node2D" parent="Lane1path" instance=ExtResource("5_cgs8h")]
+position = Vector2(763.7, 52)
+rotation = 3.14159
+progress = 292.301
 
 [connection signal="pressed" from="PanelContainer/TestTower/Tower_Button" to="MainGrid" method="_on_tower_button_pressed"]

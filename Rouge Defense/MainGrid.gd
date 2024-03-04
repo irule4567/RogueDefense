@@ -21,12 +21,12 @@ func _ready():
 func _process(delta):
 	var tile = local_to_map(get_global_mouse_position())
 	
-	if Dic.has(str(tile)):
-		#set_cell(1, tile, 1, Vector2i(0,0), 0)
-		print(Dic[str(tile)])
+	#if Dic.has(str(tile)):
+		##set_cell(1, tile, 1, Vector2i(0,0), 0)
+		#print(Dic[str(tile)])
 	
 	if Input.is_action_pressed("Click") && building == true:
-		print("Place tower ", Selected_tower, " at position", Dic[str(tile)])
+		#print("Place tower ", Selected_tower, " at position", Dic[str(tile)])
 		var new_tower = load("res://Test_Tower.tscn").instantiate()
 		new_tower.position = tile*Vector2i(108,108)+Vector2i(54,54)
 		building = false

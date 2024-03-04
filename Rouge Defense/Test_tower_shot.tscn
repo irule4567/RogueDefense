@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://5bjvkj6fwywx"]
+
+[ext_resource type="Script" path="res://Test_tower_shot.gd" id="1_6s0vh"]
+[ext_resource type="Texture2D" uid="uid://cdh804vgjp2jd" path="res://icon.svg" id="1_a10lp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y4per"]
+size = Vector2(34, 36)
+
+[node name="Node2D" type="Area2D"]
+script = ExtResource("1_6s0vh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-6, 5.5)
+scale = Vector2(0.3125, 0.335938)
+texture = ExtResource("1_a10lp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6, 6)
+shape = SubResource("RectangleShape2D_y4per")
