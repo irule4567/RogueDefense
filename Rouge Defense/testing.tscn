@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://h1jrfc40y2b8"]
 
 [ext_resource type="Texture2D" uid="uid://cj8ivpf3e30re" path="res://Assets/Green_Tile.png" id="1_flg64"]
+[ext_resource type="Script" path="res://testing.gd" id="1_jtmp6"]
 [ext_resource type="Texture2D" uid="uid://vadgd1lyvnhr" path="res://Assets/Brown_Tile.png" id="2_spw6n"]
 [ext_resource type="Script" path="res://MainGrid.gd" id="2_w0saf"]
-[ext_resource type="PackedScene" uid="uid://dnl3yy0n6ugpv" path="res://Test_Enemy.tscn" id="5_cgs8h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ymea"]
 texture = ExtResource("1_flg64")
@@ -85,6 +85,7 @@ _data = {
 point_count = 2
 
 [node name="Testing" type="Node2D"]
+script = ExtResource("1_jtmp6")
 
 [node name="MainGrid" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_pe342")
@@ -116,10 +117,5 @@ text = "TEMP"
 
 [node name="Lane1path" type="Path2D" parent="."]
 curve = SubResource("Curve2D_n0c6g")
-
-[node name="Node2D" parent="Lane1path" instance=ExtResource("5_cgs8h")]
-position = Vector2(763.7, 52)
-rotation = 3.14159
-progress = 292.301
 
 [connection signal="pressed" from="PanelContainer/TestTower/Tower_Button" to="MainGrid" method="_on_tower_button_pressed"]

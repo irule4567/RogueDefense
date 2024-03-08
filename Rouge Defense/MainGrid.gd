@@ -27,7 +27,7 @@ func _process(delta):
 	
 	if Input.is_action_pressed("Click") && building == true:
 		#print("Place tower ", Selected_tower, " at position", Dic[str(tile)])
-		var new_tower = load("res://Test_Tower.tscn").instantiate()
+		var new_tower = load("res://Towers/" + Selected_tower + ".tscn").instantiate()
 		new_tower.position = tile*Vector2i(108,108)+Vector2i(54,54)
 		building = false
 		get_node("Towers").add_child(new_tower, true)
@@ -35,5 +35,5 @@ func _process(delta):
 
 
 func _on_tower_button_pressed():
-	Selected_tower = "res://Test_Tower.tscn"
+	Selected_tower = "Test_Tower"
 	building = true

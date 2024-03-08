@@ -1,30 +1,32 @@
 [gd_scene load_steps=5 format=3 uid="uid://cw2xtiw1miap6"]
 
-[ext_resource type="Script" path="res://Test_Tower.gd" id="1_mm1kt"]
-[ext_resource type="Texture2D" uid="uid://cdh804vgjp2jd" path="res://icon.svg" id="2_cyu45"]
+[ext_resource type="Script" path="res://Towers/Test_Tower.gd" id="1_mnc3f"]
+[ext_resource type="Texture2D" uid="uid://cdh804vgjp2jd" path="res://icon.svg" id="2_ops4x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4fudr"]
-size = Vector2(131, 122)
+size = Vector2(131, 96)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bnhwo"]
-size = Vector2(1161, 118.5)
+size = Vector2(836, 100)
 
 [node name="Test_Tower" type="Area2D"]
-script = ExtResource("1_mm1kt")
+script = ExtResource("1_mnc3f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, -3)
+position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_4fudr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_cyu45")
+position = Vector2(0, 2)
+scale = Vector2(1, 0.8125)
+texture = ExtResource("2_ops4x")
 
 [node name="ShotPosition" type="Node2D" parent="Sprite2D"]
 
 [node name="Aggro Range" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Aggro Range"]
-position = Vector2(568.5, -1.25)
+position = Vector2(498, -2)
 shape = SubResource("RectangleShape2D_bnhwo")
 
 [node name="Shot timer" type="Timer" parent="."]
