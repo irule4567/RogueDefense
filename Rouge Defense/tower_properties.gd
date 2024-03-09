@@ -1,6 +1,7 @@
 extends Node
 
 var tower_data = {"Test_Tower": {
+	"name": "Test_Tower",
 	"damage": 1,
 	"health": 300,
 	"ROF": 1,

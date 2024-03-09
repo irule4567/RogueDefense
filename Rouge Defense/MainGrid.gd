@@ -7,10 +7,13 @@ var GridHeight = 5
 var Dic = {}
 var Selected_tower
 var building
+var resource_count
+@onready var resource_label = $/root/Testing/ResourceCount
 
 
 
 func _ready():
+	resource_count = 50
 	for x in GridWidth:
 		for y in GridHeight:
 			Dic[str(Vector2(x,y))] = {
@@ -19,6 +22,7 @@ func _ready():
 			#set_cell(0, Vector2(x,y), 0, Vector2i(0,0), 0)
 
 func _process(delta):
+	resource_label.set_text(str(resource_count))
 	var tile = local_to_map(get_global_mouse_position())
 	
 	#if Dic.has(str(tile)):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://h1jrfc40y2b8"]
+[gd_scene load_steps=13 format=3 uid="uid://h1jrfc40y2b8"]
 
 [ext_resource type="Texture2D" uid="uid://cj8ivpf3e30re" path="res://Assets/Green_Tile.png" id="1_flg64"]
 [ext_resource type="Script" path="res://testing.gd" id="1_jtmp6"]
@@ -84,6 +84,30 @@ _data = {
 }
 point_count = 2
 
+[sub_resource type="Curve2D" id="Curve2D_a8ccb"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1056, 156, 0, 0, 0, 0, 0, 156)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_0hthd"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1056, 260, 0, 0, 0, 0, 0, 260)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_iqxjh"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1056, 364, 0, 0, 0, 0, 0, 364)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_c74w4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1056, 468, 0, 0, 0, 0, 0, 468)
+}
+point_count = 2
+
 [node name="Testing" type="Node2D"]
 script = ExtResource("1_jtmp6")
 
@@ -117,5 +141,23 @@ text = "TEMP"
 
 [node name="Lane1path" type="Path2D" parent="."]
 curve = SubResource("Curve2D_n0c6g")
+
+[node name="Lane2path" type="Path2D" parent="."]
+curve = SubResource("Curve2D_a8ccb")
+
+[node name="Lane1path3" type="Path2D" parent="."]
+curve = SubResource("Curve2D_0hthd")
+
+[node name="Lane1path4" type="Path2D" parent="."]
+curve = SubResource("Curve2D_iqxjh")
+
+[node name="Lane1path5" type="Path2D" parent="."]
+curve = SubResource("Curve2D_c74w4")
+
+[node name="ResourceCount" type="Label" parent="."]
+offset_left = -160.0
+offset_top = -86.0
+offset_right = -3.0
+offset_bottom = -3.0
 
 [connection signal="pressed" from="PanelContainer/TestTower/Tower_Button" to="MainGrid" method="_on_tower_button_pressed"]
