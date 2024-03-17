@@ -1,6 +1,6 @@
 extends PathFollow2D
 
-var self_properties = EnemyProperties.enemy_data.get("Test_enemy")
+var self_properties = EnemyProperties.enemy_data.get("Basic_enemy")
 var speed = self_properties["speed"]
 
 func _physics_process(delta):

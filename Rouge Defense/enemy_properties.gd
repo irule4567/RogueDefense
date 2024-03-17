@@ -1,7 +1,7 @@
 extends Node
 
-var enemy_data = {"Test_enemy": {
-	"name": "Test_enemy",
+var enemy_data = {"Basic_enemy": {
+	"name": "Basic_enemy",
 	"health" : 10,
 	"speed" : 50,
 	"weight" : 1,

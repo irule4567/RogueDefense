@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cw2xtiw1miap6"]
 
-[ext_resource type="Script" path="res://Towers/Test_Tower.gd" id="1_mnc3f"]
-[ext_resource type="Texture2D" uid="uid://cdh804vgjp2jd" path="res://icon.svg" id="2_ops4x"]
+[ext_resource type="Script" path="res://Towers/Basic_Shooter.gd" id="1_aos4t"]
+[ext_resource type="Texture2D" uid="uid://cdh804vgjp2jd" path="res://icon.svg" id="2_qihr1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4fudr"]
 size = Vector2(131, 96)
@@ -9,8 +9,8 @@ size = Vector2(131, 96)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bnhwo"]
 size = Vector2(836, 100)
 
-[node name="Test_Tower" type="Area2D"]
-script = ExtResource("1_mnc3f")
+[node name="Basic_Shooter" type="Area2D"]
+script = ExtResource("1_aos4t")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0)
@@ -19,7 +19,7 @@ shape = SubResource("RectangleShape2D_4fudr")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 2)
 scale = Vector2(1, 0.8125)
-texture = ExtResource("2_ops4x")
+texture = ExtResource("2_qihr1")
 
 [node name="ShotPosition" type="Node2D" parent="Sprite2D"]
 
@@ -33,6 +33,12 @@ shape = SubResource("RectangleShape2D_bnhwo")
 autostart = true
 
 [node name="Shots" type="Node2D" parent="."]
+
+[node name="Test" type="Label" parent="."]
+offset_left = -43.0
+offset_top = 62.0
+offset_right = 40.0
+offset_bottom = 111.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_entered" from="Aggro Range" to="." method="_on_aggro_range_area_entered"]

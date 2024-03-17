@@ -1,6 +1,6 @@
 extends Area2D
 
-var self_properties = EnemyProperties.enemy_data.get("Test_enemy")
+var self_properties = EnemyProperties.enemy_data.get("Basic_enemy")
 signal attack(is_attacking)
 # Called when the node enters the scene tree for the first time.
 func _ready():

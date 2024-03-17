@@ -2,8 +2,9 @@ extends Area2D
 
 var enemiesInRange
 var shotReady
-var self_properties = TowerProperties.tower_data["Test_Tower"]
+var health = TowerProperties.tower_data["Basic_Shooter"].get("health")
 var enemies_attacking
+@onready var test_hp = $Test
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,16 +14,16 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if self_properties["health"] <= 0:
+	if health <= 0:
 		die()
 	if enemiesInRange >= 1 && shotReady == true:
 		#print("Shot fired")
-		var shot = load("res://Tower_shots/Test_tower_shot.tscn").instantiate()
+		var shot = load("res://Tower_shots/Basic_Shooter_Shot.tscn").instantiate()
 		shot.position = $Sprite2D/ShotPosition.position
 		shotReady = false
 		get_node("Shots").add_child(shot, true)
 	for i in enemies_attacking:
-		self_properties["health"] = self_properties["health"] - EnemyProperties.enemy_data[i.name]["attack"]
+		health = health - EnemyProperties.enemy_data[i.name]["attack"]
 
 
 func _on_aggro_range_area_entered(area):

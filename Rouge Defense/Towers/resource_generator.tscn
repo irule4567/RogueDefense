@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://csm3s47ca5lix"]
+
+[ext_resource type="Texture2D" uid="uid://rhkihpqi734" path="res://Assets/Temp_resource_producer.png" id="1_j2uf8"]
+[ext_resource type="Script" path="res://Towers/resource_generator.gd" id="1_o3aea"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iiyad"]
+size = Vector2(94, 104)
+
+[node name="Resource_Generator" type="Area2D"]
+script = ExtResource("1_o3aea")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_iiyad")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, -1)
+scale = Vector2(0.173491, 0.204787)
+texture = ExtResource("1_j2uf8")
+
+[node name="GenerationTimer" type="Timer" parent="."]
+wait_time = 24.0
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="GenerationTimer" to="." method="_on_generation_timer_timeout"]

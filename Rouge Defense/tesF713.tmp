@@ -123,33 +123,21 @@ anchor_mode = 0
 
 [node name="Towers" type="Node2D" parent="MainGrid"]
 
-[node name="PassiveIncomeTimer" type="Timer" parent="MainGrid"]
-wait_time = 10.0
-autostart = true
-
 [node name="PanelContainer" type="PanelContainer" parent="."]
 offset_left = -9.0
 offset_top = -83.0
 offset_right = 983.0
 
-[node name="Towers" type="Control" parent="PanelContainer"]
+[node name="TestTower" type="Control" parent="PanelContainer"]
 layout_mode = 2
 
-[node name="Tower_Button" type="Button" parent="PanelContainer/Towers"]
+[node name="Tower_Button" type="Button" parent="PanelContainer/TestTower"]
 layout_mode = 0
 offset_left = 3.0
-offset_top = -1.0
+offset_top = -9.0
 offset_right = 113.0
-offset_bottom = 84.0
+offset_bottom = 82.0
 text = "TEMP"
-
-[node name="Resource_Producer_button" type="Button" parent="PanelContainer/Towers"]
-layout_mode = 0
-offset_left = 111.0
-offset_top = -5.0
-offset_right = 216.0
-offset_bottom = 87.0
-text = "TEMP_RES"
 
 [node name="Lane1path" type="Path2D" parent="."]
 curve = SubResource("Curve2D_n0c6g")
@@ -167,12 +155,9 @@ curve = SubResource("Curve2D_iqxjh")
 curve = SubResource("Curve2D_c74w4")
 
 [node name="ResourceCount" type="Label" parent="."]
-offset_left = -164.0
-offset_top = -85.0
-offset_right = -7.0
-offset_bottom = -2.0
+offset_left = -160.0
+offset_top = -86.0
+offset_right = -3.0
+offset_bottom = -3.0
 
-[connection signal="child_exiting_tree" from="MainGrid/Towers" to="MainGrid" method="_on_towers_child_exiting_tree"]
-[connection signal="timeout" from="MainGrid/PassiveIncomeTimer" to="MainGrid" method="_on_passive_income_timer_timeout"]
-[connection signal="pressed" from="PanelContainer/Towers/Tower_Button" to="MainGrid" method="_on_tower_button_pressed"]
-[connection signal="pressed" from="PanelContainer/Towers/Resource_Producer_button" to="MainGrid" method="_on_resource_producer_button_pressed"]
+[connection signal="pressed" from="PanelContainer/TestTower/Tower_Button" to="MainGrid" method="_on_tower_button_pressed"]
