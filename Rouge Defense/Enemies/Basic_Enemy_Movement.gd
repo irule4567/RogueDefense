@@ -2,6 +2,10 @@ extends PathFollow2D
 
 var self_properties = EnemyProperties.enemy_data.get("Basic_enemy")
 var speed = self_properties["speed"]
+@onready var _animated_sprite = $Basic_enemy/Animation
+
+func _ready():
+	_animated_sprite.play("Walk")
 
 func _physics_process(delta):
 	move(delta)
@@ -16,3 +20,8 @@ func _on_test_enemy_attack(is_attacking):
 		speed = 0
 	elif is_attacking == false:
 		speed = self_properties["speed"]
+
+
+func _on_animation_animation_changed():
+	if _animated_sprite.animation == "Death": # No speed while dying
+		speed = 0

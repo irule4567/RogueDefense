@@ -151,6 +151,14 @@ offset_right = 216.0
 offset_bottom = 87.0
 text = "TEMP_RES"
 
+[node name="Wall_button" type="Button" parent="PanelContainer/Towers"]
+layout_mode = 0
+offset_left = 216.0
+offset_top = -2.0
+offset_right = 321.0
+offset_bottom = 79.0
+text = "WALL"
+
 [node name="Lane1path" type="Path2D" parent="."]
 curve = SubResource("Curve2D_n0c6g")
 
@@ -176,3 +184,4 @@ offset_bottom = -2.0
 [connection signal="timeout" from="MainGrid/PassiveIncomeTimer" to="MainGrid" method="_on_passive_income_timer_timeout"]
 [connection signal="pressed" from="PanelContainer/Towers/Tower_Button" to="MainGrid" method="_on_tower_button_pressed"]
 [connection signal="pressed" from="PanelContainer/Towers/Resource_Producer_button" to="MainGrid" method="_on_resource_producer_button_pressed"]
+[connection signal="pressed" from="PanelContainer/Towers/Wall_button" to="MainGrid" method="_on_wall_button_pressed"]

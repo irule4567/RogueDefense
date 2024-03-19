@@ -29,3 +29,7 @@ func die():
 
 func _on_generation_timer_timeout():
 	mainGrid.resource_count = mainGrid.resource_count + 25
+	
+func _on_area_exited(area):
+	if enemies_attacking.find(area) != -1: # If the area that left was an enemy
+		enemies_attacking.erase(area)

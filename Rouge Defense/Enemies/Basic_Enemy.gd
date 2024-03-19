@@ -1,6 +1,7 @@
 extends Area2D
 
 var self_properties = EnemyProperties.enemy_data.get("Basic_enemy")
+@onready var _animated_sprite = $Animation
 signal attack(is_attacking)
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,14 +24,25 @@ func _on_area_entered(area):
 			area.queue_free()
 			#print("enemy takes damage")
 		elif area.name.find(TowerProperties.tower_data[i]["name"]) != -1: # Enemy is attacking a tower
+			_animated_sprite.play("Attack")
 			attack.emit(true)
 		
 
 func die():
-	self.queue_free()
+	_animated_sprite.play("Death")
+	
 
 
 func _on_area_exited(area):
+	var is_tower = false
 	for i in TowerProperties.tower_data:
-		if area.name.find(TowerProperties.tower_data[i]["name"]) != -1: # Enemy is no longer attacking a tower
-			attack.emit(false)
+		if area.name.find(TowerProperties.tower_data[i]["name"]) != -1: # Area that left was a tower, not a shot
+			is_tower = true
+	if is_tower == true:
+		attack.emit(false)
+		_animated_sprite.play("Walk")
+
+
+func _on_animation_animation_finished():
+	if _animated_sprite.animation == "Death":
+		self.queue_free()

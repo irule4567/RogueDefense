@@ -65,3 +65,8 @@ func _on_resource_producer_button_pressed():
 func _on_towers_child_exiting_tree(node):
 	var tile = local_to_map(node.position)
 	Dic[str(tile)]["Taken"] = false
+
+
+func _on_wall_button_pressed():
+	Selected_tower = "Wall"
+	building = true

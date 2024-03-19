@@ -23,4 +23,5 @@ wait_time = 24.0
 autostart = true
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="timeout" from="GenerationTimer" to="." method="_on_generation_timer_timeout"]

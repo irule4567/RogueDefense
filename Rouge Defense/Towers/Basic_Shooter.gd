@@ -18,7 +18,7 @@ func _process(delta):
 		die()
 	if enemiesInRange >= 1 && shotReady == true:
 		#print("Shot fired")
-		var shot = load("res://Tower_shots/Basic_Shooter_Shot.tscn").instantiate()
+		var shot = load("res://Tower_shots/Basic_Shot.tscn").instantiate()
 		shot.position = $Sprite2D/ShotPosition.position
 		shotReady = false
 		get_node("Shots").add_child(shot, true)
@@ -50,3 +50,8 @@ func _on_area_entered(area):
 
 func die():
 	self.queue_free()
+
+
+func _on_area_exited(area):
+	if enemies_attacking.find(area) != -1: # If the area that left was an enemy
+		enemies_attacking.erase(area)
