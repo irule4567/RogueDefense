@@ -17,6 +17,7 @@ var recharges = [] # Array of current recharge times for each tower
 func _ready():
 	resource_count = 500
 	for i in TowerProperties.tower_data.keys():
+		#print(TowerProperties.tower_data.get(i))
 		deck.append(TowerProperties.tower_data.get(i))
 		recharges.append(0)
 	for x in GridWidth:
@@ -28,6 +29,7 @@ func _ready():
 			#set_cell(0, Vector2(x,y), 0, Vector2i(0,0), 0)
 
 func _process(delta):
+	print(recharges)
 	resource_label.set_text(str(resource_count))
 	var tile = local_to_map(get_global_mouse_position())
 	
@@ -45,6 +47,7 @@ func _process(delta):
 			new_tower.position = tile*Vector2i(108,108)+Vector2i(54,54)
 			building = false
 			resource_count = resource_count - TowerProperties.tower_data[Selected_tower].cost
+			recharges[deck.find(TowerProperties.tower_data[Selected_tower])] = TowerProperties.tower_data[Selected_tower].recharge
 
 
 
@@ -69,4 +72,9 @@ func _on_towers_child_exiting_tree(node):
 
 func _on_wall_button_pressed():
 	Selected_tower = "Wall"
+	building = true
+
+
+func _on_button_pressed():
+	Selected_tower = "Mine"
 	building = true

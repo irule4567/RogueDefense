@@ -112,6 +112,8 @@ point_count = 2
 script = ExtResource("1_jtmp6")
 
 [node name="MainGrid" type="TileMap" parent="."]
+light_mask = 2
+visibility_layer = 2
 tile_set = SubResource("TileSet_pe342")
 format = 2
 layer_0/tile_data = PackedInt32Array(65536, 2, 0, 65537, 1, 0, 65538, 2, 0, 65539, 1, 0, 65541, 1, 0, 65542, 2, 0, 65543, 1, 0, 131079, 2, 0, 196615, 1, 0, 262151, 2, 0, 262144, 1, 0, 196608, 2, 0, 131072, 1, 0, 131073, 2, 0, 196610, 2, 0, 262147, 2, 0, 196609, 1, 0, 262145, 2, 0, 131074, 1, 0, 262146, 1, 0, 131075, 2, 0, 196611, 1, 0, 131076, 1, 0, 196612, 2, 0, 262148, 1, 0, 131077, 2, 0, 196613, 1, 0, 262149, 2, 0, 131078, 1, 0, 196614, 2, 0, 262150, 1, 0, 262152, 1, 0, 131080, 1, 0, 196616, 2, 0, 65544, 2, 0, 2, 1, 0, 6, 1, 0, 8, 1, 0, 1, 2, 0, 5, 2, 0, 7, 2, 0, 65540, 2, 0, 3, 2, 0, 4, 1, 0, 0, 1, 0)
@@ -143,6 +145,8 @@ offset_right = 113.0
 offset_bottom = 84.0
 text = "TEMP"
 
+[node name="Tower_Recharge" type="Timer" parent="PanelContainer/Towers/Tower_Button"]
+
 [node name="Resource_Producer_button" type="Button" parent="PanelContainer/Towers"]
 layout_mode = 0
 offset_left = 111.0
@@ -159,19 +163,26 @@ offset_right = 321.0
 offset_bottom = 79.0
 text = "WALL"
 
+[node name="Button" type="Button" parent="PanelContainer/Towers"]
+layout_mode = 0
+offset_left = 319.0
+offset_right = 418.0
+offset_bottom = 82.0
+text = "MINE"
+
 [node name="Lane1path" type="Path2D" parent="."]
 curve = SubResource("Curve2D_n0c6g")
 
 [node name="Lane2path" type="Path2D" parent="."]
 curve = SubResource("Curve2D_a8ccb")
 
-[node name="Lane1path3" type="Path2D" parent="."]
+[node name="Lane3path" type="Path2D" parent="."]
 curve = SubResource("Curve2D_0hthd")
 
-[node name="Lane1path4" type="Path2D" parent="."]
+[node name="Lane4path" type="Path2D" parent="."]
 curve = SubResource("Curve2D_iqxjh")
 
-[node name="Lane1path5" type="Path2D" parent="."]
+[node name="Lane5path" type="Path2D" parent="."]
 curve = SubResource("Curve2D_c74w4")
 
 [node name="ResourceCount" type="Label" parent="."]
@@ -185,3 +196,4 @@ offset_bottom = -2.0
 [connection signal="pressed" from="PanelContainer/Towers/Tower_Button" to="MainGrid" method="_on_tower_button_pressed"]
 [connection signal="pressed" from="PanelContainer/Towers/Resource_Producer_button" to="MainGrid" method="_on_resource_producer_button_pressed"]
 [connection signal="pressed" from="PanelContainer/Towers/Wall_button" to="MainGrid" method="_on_wall_button_pressed"]
+[connection signal="pressed" from="PanelContainer/Towers/Button" to="MainGrid" method="_on_button_pressed"]

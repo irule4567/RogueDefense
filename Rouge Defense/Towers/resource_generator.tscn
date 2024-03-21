@@ -7,6 +7,8 @@
 size = Vector2(94, 104)
 
 [node name="Resource_Generator" type="Area2D"]
+light_mask = 8
+visibility_layer = 8
 script = ExtResource("1_o3aea")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

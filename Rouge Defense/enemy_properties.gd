@@ -3,7 +3,7 @@ extends Node
 var enemy_data = {"Basic_enemy": {
 	"name": "Basic_enemy",
 	"health" : 10,
-	"speed" : 50,
+	"speed" : 20,
 	"weight" : 1,
 	"attack": 1,
 	"attack_cooldown": 1

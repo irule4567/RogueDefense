@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://b32jloqpeu7sn"]
+
+[ext_resource type="Texture2D" uid="uid://bj2fnabfsadk2" path="res://Assets/Mine.png" id="1_ksu1h"]
+[ext_resource type="Script" path="res://Towers/Mine.gd" id="1_qpnq2"]
+[ext_resource type="Texture2D" uid="uid://ch2xvb3es5nbc" path="res://Assets/Unarmed_mine.png" id="2_udfyj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_53dkh"]
+size = Vector2(121, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x12wb"]
+atlas = ExtResource("2_udfyj")
+region = Rect2(0, 0, 696, 254)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e3vq5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ksu1h")
+}],
+"loop": true,
+"name": &"Armed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x12wb")
+}],
+"loop": true,
+"name": &"Unarmed",
+"speed": 5.0
+}]
+
+[node name="Mine" type="Area2D"]
+light_mask = 8
+visibility_layer = 8
+script = ExtResource("1_qpnq2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 1)
+shape = SubResource("RectangleShape2D_53dkh")
+
+[node name="Animation" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.331897, 0.330674)
+sprite_frames = SubResource("SpriteFrames_e3vq5")
+animation = &"Armed"
+
+[node name="ExplosionOrigin" type="Node2D" parent="Animation"]
+
+[node name="ArmingTimer" type="Timer" parent="."]
+wait_time = 14.0
+one_shot = true
+autostart = true
+
+[node name="Explosion" type="Node2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="timeout" from="ArmingTimer" to="." method="_on_arming_timer_timeout"]

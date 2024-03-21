@@ -158,6 +158,8 @@ rotates = false
 script = ExtResource("1_yc8a6")
 
 [node name="Basic_enemy" type="Area2D" parent="."]
+light_mask = 4
+visibility_layer = 4
 script = ExtResource("2_p67sl")
 
 [node name="Attack_timer" type="Timer" parent="Basic_enemy"]

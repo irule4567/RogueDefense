@@ -7,6 +7,9 @@
 size = Vector2(34, 36)
 
 [node name="Basic_Shot" type="Area2D"]
+show_behind_parent = true
+light_mask = 16
+visibility_layer = 16
 script = ExtResource("1_xn72c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
