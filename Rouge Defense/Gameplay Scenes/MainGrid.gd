@@ -9,7 +9,7 @@ var Selected_tower
 var building
 var resource_count
 var deck = [] # Array of tower names for towers available in the level
-var recharges = [] # Array of current recharge times for each tower
+var recharges = [] # Array of current recharge times for each tower. Currently just has whether the tower is recharged or not
 @onready var resource_label = $/root/Testing/ResourceCount
 
 
@@ -19,7 +19,7 @@ func _ready():
 	for i in TowerProperties.tower_data.keys():
 		#print(TowerProperties.tower_data.get(i))
 		deck.append(TowerProperties.tower_data.get(i))
-		recharges.append(0)
+		recharges.append(false)
 	for x in GridWidth:
 		for y in GridHeight:
 			Dic[str(Vector2(x,y))] = {
@@ -29,7 +29,7 @@ func _ready():
 			#set_cell(0, Vector2(x,y), 0, Vector2i(0,0), 0)
 
 func _process(delta):
-	print(recharges)
+	#print(recharges)
 	resource_label.set_text(str(resource_count))
 	var tile = local_to_map(get_global_mouse_position())
 	
@@ -37,8 +37,8 @@ func _process(delta):
 	#if Dic.has(str(tile)):
 		##set_cell(1, tile, 1, Vector2i(0,0), 0)
 		#print(Dic[str(tile)])
-	
-	if Input.is_action_pressed("Click") && building == true && TowerProperties.tower_data[Selected_tower].cost <= resource_count && Dic.has(str(tile)):
+	# Check for click, selected tower, resources, tile exists, and recharge
+	if Input.is_action_pressed("Click") && building == true && TowerProperties.tower_data[Selected_tower].cost <= resource_count && Dic.has(str(tile)) && recharges[deck.find(TowerProperties.tower_data[Selected_tower])] == false:
 		#print("Place tower ", Selected_tower, " at position", Dic[str(tile)])
 		if Dic[str(tile)]["Taken"] == false:
 			Dic[str(tile)]["Taken"] = true
@@ -47,7 +47,15 @@ func _process(delta):
 			new_tower.position = tile*Vector2i(108,108)+Vector2i(54,54)
 			building = false
 			resource_count = resource_count - TowerProperties.tower_data[Selected_tower].cost
-			recharges[deck.find(TowerProperties.tower_data[Selected_tower])] = TowerProperties.tower_data[Selected_tower].recharge
+			_set_tower_timer(Selected_tower)
+			
+			#var tower_timer = Timer.new()
+			#add_child(tower_timer)
+			#tower_timer.wait_time = TowerProperties.tower_data[Selected_tower].recharge
+			#tower_timer.one_shot = true
+			#tower_timer.start()
+			#tower_timer.connect("timeout", self, "_on_timer_timeout")
+			#recharges[deck.find(TowerProperties.tower_data[Selected_tower])] = tower_timer
 
 
 
@@ -78,3 +86,10 @@ func _on_wall_button_pressed():
 func _on_button_pressed():
 	Selected_tower = "Mine"
 	building = true
+	
+func _set_tower_timer(tower):
+	recharges[deck.find(TowerProperties.tower_data[tower])] = true
+	#print("before timer")
+	await get_tree().create_timer(TowerProperties.tower_data[tower].recharge).timeout
+	#print("after timer")
+	recharges[deck.find(TowerProperties.tower_data[tower])] = false

@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://u6xvo0fuqcfe"]
+
+[ext_resource type="Texture2D" uid="uid://ryjqnx0fvu4c" path="res://Assets/Title.png" id="1_aeggq"]
+[ext_resource type="Script" path="res://Gameplay Scenes/StartButton.gd" id="2_jelbv"]
+
+[node name="MainMenu" type="Node2D"]
+
+[node name="TitleBackground" type="TextureRect" parent="."]
+offset_right = 696.0
+offset_bottom = 564.0
+texture = ExtResource("1_aeggq")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+zoom = Vector2(1.7, 1.15)
+
+[node name="StartButton" type="Button" parent="."]
+offset_left = 181.0
+offset_top = 402.0
+offset_right = 459.0
+offset_bottom = 479.0
+text = "Start
+"
+script = ExtResource("2_jelbv")
+
+[connection signal="pressed" from="StartButton" to="StartButton" method="_on_pressed"]

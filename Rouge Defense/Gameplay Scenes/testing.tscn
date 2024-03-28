@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://h1jrfc40y2b8"]
+[gd_scene load_steps=14 format=3 uid="uid://h1jrfc40y2b8"]
 
 [ext_resource type="Texture2D" uid="uid://cj8ivpf3e30re" path="res://Assets/Green_Tile.png" id="1_flg64"]
-[ext_resource type="Script" path="res://testing.gd" id="1_jtmp6"]
+[ext_resource type="Script" path="res://Gameplay Scenes/testing.gd" id="1_jtmp6"]
 [ext_resource type="Texture2D" uid="uid://vadgd1lyvnhr" path="res://Assets/Brown_Tile.png" id="2_spw6n"]
-[ext_resource type="Script" path="res://MainGrid.gd" id="2_w0saf"]
+[ext_resource type="Script" path="res://Gameplay Scenes/MainGrid.gd" id="2_w0saf"]
+[ext_resource type="Script" path="res://Gameplay Scenes/SpawingAlgorithm.gd" id="5_1v33r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ymea"]
 texture = ExtResource("1_flg64")
@@ -80,31 +81,31 @@ sources/2 = SubResource("TileSetAtlasSource_vogbq")
 
 [sub_resource type="Curve2D" id="Curve2D_n0c6g"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1056, 52, 0, 0, 0, 0, 0, 52)
+"points": PackedVector2Array(0, 0, 0, 0, 1056, 54, 0, 0, 0, 0, 0, 54)
 }
 point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_a8ccb"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1056, 156, 0, 0, 0, 0, 0, 156)
+"points": PackedVector2Array(0, 0, 0, 0, 1056, 162, 0, 0, 0, 0, 0, 162)
 }
 point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_0hthd"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1056, 260, 0, 0, 0, 0, 0, 260)
+"points": PackedVector2Array(0, 0, 0, 0, 1056, 270, 0, 0, 0, 0, 0, 270)
 }
 point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_iqxjh"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1056, 364, 0, 0, 0, 0, 0, 364)
+"points": PackedVector2Array(0, 0, 0, 0, 1056, 378, 0, 0, 0, 0, 0, 378)
 }
 point_count = 2
 
 [sub_resource type="Curve2D" id="Curve2D_c74w4"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1056, 468, 0, 0, 0, 0, 0, 468)
+"points": PackedVector2Array(0, 0, 0, 0, 1056, 486, 0, 0, 0, 0, 0, 486)
 }
 point_count = 2
 
@@ -144,8 +145,6 @@ offset_top = -1.0
 offset_right = 113.0
 offset_bottom = 84.0
 text = "TEMP"
-
-[node name="Tower_Recharge" type="Timer" parent="PanelContainer/Towers/Tower_Button"]
 
 [node name="Resource_Producer_button" type="Button" parent="PanelContainer/Towers"]
 layout_mode = 0
@@ -191,9 +190,13 @@ offset_top = -85.0
 offset_right = -7.0
 offset_bottom = -2.0
 
+[node name="SpawingAlgorithm" type="Node" parent="."]
+script = ExtResource("5_1v33r")
+
 [connection signal="child_exiting_tree" from="MainGrid/Towers" to="MainGrid" method="_on_towers_child_exiting_tree"]
 [connection signal="timeout" from="MainGrid/PassiveIncomeTimer" to="MainGrid" method="_on_passive_income_timer_timeout"]
 [connection signal="pressed" from="PanelContainer/Towers/Tower_Button" to="MainGrid" method="_on_tower_button_pressed"]
 [connection signal="pressed" from="PanelContainer/Towers/Resource_Producer_button" to="MainGrid" method="_on_resource_producer_button_pressed"]
 [connection signal="pressed" from="PanelContainer/Towers/Wall_button" to="MainGrid" method="_on_wall_button_pressed"]
 [connection signal="pressed" from="PanelContainer/Towers/Button" to="MainGrid" method="_on_button_pressed"]
+[connection signal="spawn_new_wave" from="SpawingAlgorithm" to="." method="_on_spawing_algorithm_spawn_new_wave"]
