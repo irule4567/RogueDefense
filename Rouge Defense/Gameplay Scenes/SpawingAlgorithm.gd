@@ -16,7 +16,7 @@ signal spawn_new_wave(waveData)
 func _ready():
 	credits = [1, 2, 3, 5, 8, 11, 14]
 	num_waves = credits.size()
-	time_between_waves = 3
+	time_between_waves = 15
 	initial_wait = 1
 	await get_tree().create_timer(initial_wait).timeout
 	_set_new_wave(0)
@@ -33,7 +33,7 @@ func _set_new_wave(wave):
 		waveData.append(["Basic_Enemy", lane])
 	spawn_new_wave.emit(waveData)
 	await get_tree().create_timer(time_between_waves).timeout
-	print("Timer ends")
-	print(wave)
+	#print("Timer ends")
+	#print(wave)
 	if wave+1 < num_waves:
 		_set_new_wave(wave + 1)

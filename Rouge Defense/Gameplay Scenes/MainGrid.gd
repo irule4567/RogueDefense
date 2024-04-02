@@ -19,7 +19,8 @@ func _ready():
 	for i in TowerProperties.tower_data.keys():
 		#print(TowerProperties.tower_data.get(i))
 		deck.append(TowerProperties.tower_data.get(i))
-		recharges.append(false)
+		var recharge_timer = get_tree().create_timer(0.0)
+		recharges.append(recharge_timer)
 	for x in GridWidth:
 		for y in GridHeight:
 			Dic[str(Vector2(x,y))] = {
@@ -32,13 +33,18 @@ func _process(delta):
 	#print(recharges)
 	resource_label.set_text(str(resource_count))
 	var tile = local_to_map(get_global_mouse_position())
-	
+	for tower in deck:
+		var recharge_bar_name = TowerProperties.tower_data[tower.name].name + "_Recharge"
+		#print(recharge_bar_name)
+		var recharge_bar = get_node("../PanelContainer/Towers/" + TowerProperties.tower_data[tower.name].name + "_button/" + recharge_bar_name)
+		#print("../PanelContainer/Towers/" + TowerProperties.tower_data[tower.name].name + "_button/" + recharge_bar_name)
+		recharge_bar.set_as_ratio(recharges[deck.find(TowerProperties.tower_data[tower.name])].time_left / TowerProperties.tower_data[tower.name].recharge) 
 	
 	#if Dic.has(str(tile)):
 		##set_cell(1, tile, 1, Vector2i(0,0), 0)
 		#print(Dic[str(tile)])
 	# Check for click, selected tower, resources, tile exists, and recharge
-	if Input.is_action_pressed("Click") && building == true && TowerProperties.tower_data[Selected_tower].cost <= resource_count && Dic.has(str(tile)) && recharges[deck.find(TowerProperties.tower_data[Selected_tower])] == false:
+	if Input.is_action_pressed("Click") && building == true && TowerProperties.tower_data[Selected_tower].cost <= resource_count && Dic.has(str(tile)) && recharges[deck.find(TowerProperties.tower_data[Selected_tower])].time_left == 0:
 		#print("Place tower ", Selected_tower, " at position", Dic[str(tile)])
 		if Dic[str(tile)]["Taken"] == false:
 			Dic[str(tile)]["Taken"] = true
@@ -83,13 +89,14 @@ func _on_wall_button_pressed():
 	building = true
 
 
-func _on_button_pressed():
+func _set_tower_timer(tower):
+	#recharges[deck.find(TowerProperties.tower_data[tower])] = true
+	#print("before timer")
+	recharges[deck.find(TowerProperties.tower_data[tower])] = get_tree().create_timer(TowerProperties.tower_data[tower].recharge)
+	#print("after timer")
+	#recharges[deck.find(TowerProperties.tower_data[tower])] = false
+
+
+func _on_mine_button_pressed():
 	Selected_tower = "Mine"
 	building = true
-	
-func _set_tower_timer(tower):
-	recharges[deck.find(TowerProperties.tower_data[tower])] = true
-	#print("before timer")
-	await get_tree().create_timer(TowerProperties.tower_data[tower].recharge).timeout
-	#print("after timer")
-	recharges[deck.find(TowerProperties.tower_data[tower])] = false
