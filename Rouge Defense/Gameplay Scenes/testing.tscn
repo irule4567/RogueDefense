@@ -1,10 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://h1jrfc40y2b8"]
+[gd_scene load_steps=18 format=3 uid="uid://h1jrfc40y2b8"]
 
 [ext_resource type="Texture2D" uid="uid://cj8ivpf3e30re" path="res://Assets/Green_Tile.png" id="1_flg64"]
 [ext_resource type="Script" path="res://Gameplay Scenes/testing.gd" id="1_jtmp6"]
 [ext_resource type="Texture2D" uid="uid://vadgd1lyvnhr" path="res://Assets/Brown_Tile.png" id="2_spw6n"]
 [ext_resource type="Script" path="res://Gameplay Scenes/MainGrid.gd" id="2_w0saf"]
 [ext_resource type="Script" path="res://Gameplay Scenes/SpawingAlgorithm.gd" id="5_1v33r"]
+[ext_resource type="Script" path="res://Gameplay Scenes/PauseMenu.gd" id="6_en3iw"]
+[ext_resource type="Texture2D" uid="uid://ryjqnx0fvu4c" path="res://Assets/Title.png" id="7_riqna"]
+[ext_resource type="Texture2D" uid="uid://bxrjt1t6o027j" path="res://Assets/UI_Icons_By_VerzatileDev/Individual/Uicons_IndividualWhite/UI_IconsWhiteIndividual_g683.png" id="8_lcbm2"]
+[ext_resource type="Texture2D" uid="uid://didjafbkwr5bj" path="res://Assets/UI_Icons_By_VerzatileDev/Individual/Uicons_IndividualWhite/UI_IconsWhiteIndividual_g708.png" id="9_ojvgj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ymea"]
 texture = ExtResource("1_flg64")
@@ -133,7 +137,7 @@ autostart = true
 [node name="PanelContainer" type="PanelContainer" parent="."]
 offset_left = -9.0
 offset_top = -83.0
-offset_right = 983.0
+offset_right = 855.0
 
 [node name="Towers" type="Control" parent="PanelContainer"]
 layout_mode = 2
@@ -253,6 +257,32 @@ offset_bottom = -2.0
 [node name="SpawingAlgorithm" type="Node" parent="."]
 script = ExtResource("5_1v33r")
 
+[node name="PauseButton" type="Button" parent="."]
+offset_left = 857.0
+offset_top = -87.0
+offset_right = 974.0
+offset_bottom = -2.0
+text = "PAUSE"
+
+[node name="PauseMenu" type="Node2D" parent="."]
+process_mode = 2
+visible = false
+script = ExtResource("6_en3iw")
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu"]
+offset_right = 976.0
+offset_bottom = 541.0
+texture = ExtResource("7_riqna")
+
+[node name="Resume" type="TextureButton" parent="PauseMenu/TextureRect"]
+layout_mode = 0
+offset_left = 184.0
+offset_top = 332.0
+offset_right = 377.0
+offset_bottom = 481.0
+texture_normal = ExtResource("8_lcbm2")
+texture_pressed = ExtResource("9_ojvgj")
+
 [connection signal="child_exiting_tree" from="MainGrid/Towers" to="MainGrid" method="_on_towers_child_exiting_tree"]
 [connection signal="timeout" from="MainGrid/PassiveIncomeTimer" to="MainGrid" method="_on_passive_income_timer_timeout"]
 [connection signal="pressed" from="PanelContainer/Towers/Basic_Shooter_button" to="MainGrid" method="_on_tower_button_pressed"]
@@ -260,3 +290,7 @@ script = ExtResource("5_1v33r")
 [connection signal="pressed" from="PanelContainer/Towers/Wall_button" to="MainGrid" method="_on_wall_button_pressed"]
 [connection signal="pressed" from="PanelContainer/Towers/Mine_button" to="MainGrid" method="_on_mine_button_pressed"]
 [connection signal="spawn_new_wave" from="SpawingAlgorithm" to="." method="_on_spawing_algorithm_spawn_new_wave"]
+[connection signal="pressed" from="PauseButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="PauseButton" to="PauseMenu" method="_on_pause_button_pressed"]
+[connection signal="pressed" from="PauseMenu/TextureRect/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseMenu/TextureRect/Resume" to="PauseMenu" method="_on_resume_pressed"]
