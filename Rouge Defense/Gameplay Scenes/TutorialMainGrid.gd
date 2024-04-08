@@ -10,6 +10,11 @@ var building
 var resource_count
 var deck = [] # Array of tower names for towers available in the level
 var recharges = [] # Array of current recharge times for each tower. Currently just has whether the tower is recharged or not
+var in_tutorial
+
+signal tutorial_gen_place()
+signal tutorial_shoot_place()
+
 @onready var resource_label = $/root/Tutorial/ResourceCount
 
 
@@ -49,6 +54,10 @@ func _process(delta):
 		if Dic[str(tile)]["Taken"] == false:
 			Dic[str(tile)]["Taken"] = true
 			var new_tower = load("res://Towers/" + Selected_tower + ".tscn").instantiate()
+			if Selected_tower == "Resource_Generator" and in_tutorial == true:
+				emit_signal("tutorial_gen_place")
+			if Selected_tower == "Basic_Shooter" and in_tutorial == true:
+				emit_signal("tutorial_shoot_place")
 			get_node("Towers").add_child(new_tower, true)
 			new_tower.position = tile*Vector2i(108,108)+Vector2i(54,54)
 			building = false
@@ -100,3 +109,28 @@ func _set_tower_timer(tower):
 func _on_mine_button_pressed():
 	Selected_tower = "Mine"
 	building = true
+
+
+func _on_tutorial_text_give_resource():
+	resource_count = resource_count + 100
+
+
+func _on_tutorial_text_show_shooter():
+	Dic[str(Vector2(0,2))]["Taken"] = false
+
+
+func _on_tutorial_text_show_producer(): # Restrict all spaces except the tutorial one
+	in_tutorial = true
+	for x in GridWidth:
+		for y in GridHeight:
+			Dic[str(Vector2(x,y))]["Taken"] = true
+	Dic[str(Vector2(1,2))]["Taken"] = false
+
+
+func _on_tutorial_text_end_tutorial():
+	in_tutorial = false
+	for x in GridWidth:
+		for y in GridHeight:
+			Dic[str(Vector2(x,y))]["Taken"] = false
+	Dic[str(Vector2(0,2))]["Taken"] = true
+	Dic[str(Vector2(1,2))]["Taken"] = true

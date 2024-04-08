@@ -3,6 +3,7 @@ extends Area2D
 var health = EnemyProperties.enemy_data["Basic_enemy"].get("health")
 @onready var _animated_sprite = $Animation
 signal attack(is_attacking)
+signal death()
 var dead # Used to prevent weird issues with death animation
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -53,4 +54,5 @@ func _on_area_exited(area):
 
 func _on_animation_animation_finished():
 	if _animated_sprite.animation == "Death":
-		self.queue_free()
+		#print("DEATH")
+		emit_signal("death")

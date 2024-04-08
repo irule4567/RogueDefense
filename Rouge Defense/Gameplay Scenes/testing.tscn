@@ -289,6 +289,7 @@ texture_pressed = ExtResource("9_ojvgj")
 [connection signal="pressed" from="PanelContainer/Towers/Resource_Generator_button" to="MainGrid" method="_on_resource_producer_button_pressed"]
 [connection signal="pressed" from="PanelContainer/Towers/Wall_button" to="MainGrid" method="_on_wall_button_pressed"]
 [connection signal="pressed" from="PanelContainer/Towers/Mine_button" to="MainGrid" method="_on_mine_button_pressed"]
+[connection signal="last_wave" from="SpawingAlgorithm" to="." method="_on_spawing_algorithm_last_wave"]
 [connection signal="spawn_new_wave" from="SpawingAlgorithm" to="." method="_on_spawing_algorithm_spawn_new_wave"]
 [connection signal="pressed" from="PauseButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="PauseButton" to="PauseMenu" method="_on_pause_button_pressed"]

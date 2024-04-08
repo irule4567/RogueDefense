@@ -1,20 +1,28 @@
 extends Node2D
 
+var enemies = [] # Tracks enemy count, used for determining end of level
+var last_wave
+var all_enemies_spawned
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	last_wave = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if enemies.is_empty() and all_enemies_spawned == true:
+		print("End of level")
 
 
 func _on_spawing_algorithm_spawn_new_wave(waveData):
 	for i in waveData:
 		var enemy = load("res://Enemies/" + i[0] + ".tscn").instantiate()
 		get_node("Lane" + str(i[1]) + "path").add_child(enemy, true)
+		enemies.push_back(enemy)
 		await get_tree().create_timer(0.5).timeout # Small delay between spawns, ensures enemies don't stack on eachother
+	if last_wave == true:
+		all_enemies_spawned = true
 
 
 func _on_button_pressed():
@@ -23,3 +31,7 @@ func _on_button_pressed():
 
 func _on_resume_pressed():
 	get_tree().paused = false
+
+
+func _on_spawing_algorithm_last_wave():
+	last_wave = true

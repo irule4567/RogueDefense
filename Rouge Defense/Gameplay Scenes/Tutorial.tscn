@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://1rjd0fftp1fs"]
+[gd_scene load_steps=9 format=3 uid="uid://1rjd0fftp1fs"]
 
 [ext_resource type="PackedScene" uid="uid://h1jrfc40y2b8" path="res://Gameplay Scenes/testing.tscn" id="1_qeicg"]
 [ext_resource type="Script" path="res://Gameplay Scenes/Tutorial.gd" id="2_8ywqb"]
 [ext_resource type="Script" path="res://Gameplay Scenes/TutorialMainGrid.gd" id="2_hag14"]
 [ext_resource type="Script" path="res://Gameplay Scenes/TutorialSpawingAlgorithm.gd" id="2_qp8xn"]
 [ext_resource type="Script" path="res://Gameplay Scenes/TutorialText.gd" id="5_4g20u"]
+[ext_resource type="Texture2D" uid="uid://xmh2s6b7gsts" path="res://Assets/ExportedIcons/Icon_Focus.png" id="6_jcgiq"]
 [ext_resource type="Texture2D" uid="uid://dy6lqr2se6l27" path="res://Assets/ExportedIcons/Icon_ArrowUp.png" id="6_rb6ko"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kk0u1"]
@@ -31,7 +32,24 @@ script = ExtResource("2_qp8xn")
 follow_viewport_enabled = true
 script = ExtResource("5_4g20u")
 
-[node name="ResourceArrow" type="TextureRect" parent="TutorialText" index="0"]
+[node name="ShooterArea" type="TextureRect" parent="TutorialText" index="0"]
+visible = false
+offset_top = 215.0
+offset_right = 114.0
+offset_bottom = 324.0
+texture = ExtResource("6_jcgiq")
+expand_mode = 1
+
+[node name="ResourceArea" type="TextureRect" parent="TutorialText" index="1"]
+visible = false
+offset_left = 106.0
+offset_top = 212.0
+offset_right = 222.0
+offset_bottom = 323.0
+texture = ExtResource("6_jcgiq")
+expand_mode = 1
+
+[node name="ResourceArrow" type="TextureRect" parent="TutorialText" index="2"]
 visible = false
 offset_left = -151.0
 offset_top = 11.0
@@ -40,7 +58,7 @@ offset_bottom = 162.0
 texture = ExtResource("6_rb6ko")
 expand_mode = 1
 
-[node name="TowerArrow" type="TextureRect" parent="TutorialText" index="1"]
+[node name="TowerArrow" type="TextureRect" parent="TutorialText" index="3"]
 visible = false
 offset_left = 100.0
 offset_top = 13.0
@@ -49,7 +67,7 @@ offset_bottom = 189.0
 texture = ExtResource("6_rb6ko")
 expand_mode = 1
 
-[node name="GeneratorArrow" type="TextureRect" parent="TutorialText" index="2"]
+[node name="GeneratorArrow" type="TextureRect" parent="TutorialText" index="4"]
 visible = false
 offset_left = 112.0
 offset_top = 2.0
@@ -58,7 +76,7 @@ offset_bottom = 124.0
 texture = ExtResource("6_rb6ko")
 expand_mode = 1
 
-[node name="TextboxContainer" type="MarginContainer" parent="TutorialText" index="3"]
+[node name="TextboxContainer" type="MarginContainer" parent="TutorialText" index="5"]
 offset_left = 27.0
 offset_top = 366.0
 offset_right = 332.0
@@ -88,3 +106,14 @@ layout_mode = 2
 [node name="Dialogue" type="Label" parent="TutorialText/TextboxContainer/MarginContainer/HBoxContainer" index="0"]
 layout_mode = 2
 text = "Test"
+
+[connection signal="tutorial_gen_place" from="MainGrid" to="TutorialText" method="_on_main_grid_tutorial_gen_place"]
+[connection signal="tutorial_shoot_place" from="MainGrid" to="TutorialText" method="_on_main_grid_tutorial_shoot_place"]
+[connection signal="end_tutorial" from="TutorialText" to="." method="_on_tutorial_text_end_tutorial"]
+[connection signal="end_tutorial" from="TutorialText" to="MainGrid" method="_on_tutorial_text_end_tutorial"]
+[connection signal="give_resource" from="TutorialText" to="MainGrid" method="_on_tutorial_text_give_resource"]
+[connection signal="hide_producer" from="TutorialText" to="." method="_on_tutorial_text_hide_producer"]
+[connection signal="show_producer" from="TutorialText" to="." method="_on_tutorial_text_show_producer"]
+[connection signal="show_producer" from="TutorialText" to="MainGrid" method="_on_tutorial_text_show_producer"]
+[connection signal="show_shooter" from="TutorialText" to="." method="_on_tutorial_text_show_shooter"]
+[connection signal="show_shooter" from="TutorialText" to="MainGrid" method="_on_tutorial_text_show_shooter"]

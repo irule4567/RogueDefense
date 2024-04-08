@@ -25,3 +25,7 @@ func _on_test_enemy_attack(is_attacking):
 func _on_animation_animation_changed():
 	if _animated_sprite.animation == "Death": # No speed while dying
 		speed = 0
+
+
+func _on_basic_enemy_death():
+	self.queue_free()

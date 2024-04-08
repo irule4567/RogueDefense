@@ -11,6 +11,7 @@ var time_between_waves
 var initial_wait
 
 signal spawn_new_wave(waveData)
+signal last_wave()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -37,3 +38,5 @@ func _set_new_wave(wave):
 	#print(wave)
 	if wave+1 < num_waves:
 		_set_new_wave(wave + 1)
+	else:
+		emit_signal("last_wave")
