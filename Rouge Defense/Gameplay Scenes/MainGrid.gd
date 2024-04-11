@@ -10,7 +10,7 @@ var building
 var resource_count
 var deck = [] # Array of tower names for towers available in the level
 var recharges = [] # Array of current recharge times for each tower. Currently just has whether the tower is recharged or not
-@onready var resource_label = $/root/Testing/ResourceCount
+@onready var resource_label = $/root/BasicLevel/ResourceCount
 
 
 

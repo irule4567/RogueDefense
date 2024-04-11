@@ -1,7 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://dp7weyjiq2vwt"]
+[gd_scene load_steps=6 format=3 uid="uid://dp7weyjiq2vwt"]
 
 [ext_resource type="Script" path="res://Tower_shots/Basic_Shooter_Shot.gd" id="1_xn72c"]
-[ext_resource type="Texture2D" uid="uid://cdh804vgjp2jd" path="res://icon.svg" id="2_1twk4"]
+[ext_resource type="Texture2D" uid="uid://bvqkbhjew05hx" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Archer/Arrow/Arrow.png" id="2_ckjp5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_utn34"]
+atlas = ExtResource("2_ckjp5")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4n3i3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_utn34")
+}],
+"loop": true,
+"name": &"Fired",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y4per"]
 size = Vector2(34, 36)
@@ -12,10 +27,11 @@ light_mask = 16
 visibility_layer = 16
 script = ExtResource("1_xn72c")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-6, 5.5)
-scale = Vector2(0.3125, 0.335938)
-texture = ExtResource("2_1twk4")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-5, 4)
+scale = Vector2(0.625, 0.578125)
+sprite_frames = SubResource("SpriteFrames_4n3i3")
+animation = &"Fired"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-6, 6)

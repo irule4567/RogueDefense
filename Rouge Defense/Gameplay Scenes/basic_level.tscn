@@ -1,0 +1,297 @@
+[gd_scene load_steps=18 format=3 uid="uid://crxk4sjgn3glw"]
+
+[ext_resource type="Script" path="res://Gameplay Scenes/testing.gd" id="1_ofgqn"]
+[ext_resource type="Texture2D" uid="uid://cj8ivpf3e30re" path="res://Assets/Green_Tile.png" id="2_kmmka"]
+[ext_resource type="Texture2D" uid="uid://vadgd1lyvnhr" path="res://Assets/Brown_Tile.png" id="3_pgcty"]
+[ext_resource type="Script" path="res://Gameplay Scenes/MainGrid.gd" id="4_12y7e"]
+[ext_resource type="Script" path="res://Gameplay Scenes/SpawingAlgorithm.gd" id="5_xfpsw"]
+[ext_resource type="Script" path="res://Gameplay Scenes/PauseMenu.gd" id="6_bn34x"]
+[ext_resource type="Texture2D" uid="uid://ryjqnx0fvu4c" path="res://Assets/Title.png" id="7_h83h8"]
+[ext_resource type="Texture2D" uid="uid://bxrjt1t6o027j" path="res://Assets/UI_Icons_By_VerzatileDev/Individual/Uicons_IndividualWhite/UI_IconsWhiteIndividual_g683.png" id="8_n244o"]
+[ext_resource type="Texture2D" uid="uid://didjafbkwr5bj" path="res://Assets/UI_Icons_By_VerzatileDev/Individual/Uicons_IndividualWhite/UI_IconsWhiteIndividual_g708.png" id="9_xwa7r"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ymea"]
+texture = ExtResource("2_kmmka")
+texture_region_size = Vector2i(108, 108)
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vogbq"]
+texture = ExtResource("3_pgcty")
+texture_region_size = Vector2i(108, 108)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_pe342"]
+tile_size = Vector2i(108, 108)
+sources/1 = SubResource("TileSetAtlasSource_0ymea")
+sources/2 = SubResource("TileSetAtlasSource_vogbq")
+
+[sub_resource type="Curve2D" id="Curve2D_n0c6g"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1056, 54, 0, 0, 0, 0, 0, 54)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_a8ccb"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1056, 162, 0, 0, 0, 0, 0, 162)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_0hthd"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1056, 270, 0, 0, 0, 0, 0, 270)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_iqxjh"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1056, 378, 0, 0, 0, 0, 0, 378)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_c74w4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1056, 486, 0, 0, 0, 0, 0, 486)
+}
+point_count = 2
+
+[node name="BasicLevel" type="Node2D"]
+script = ExtResource("1_ofgqn")
+
+[node name="MainGrid" type="TileMap" parent="."]
+light_mask = 2
+visibility_layer = 2
+tile_set = SubResource("TileSet_pe342")
+format = 2
+layer_0/tile_data = PackedInt32Array(65536, 2, 0, 65537, 1, 0, 65538, 2, 0, 65539, 1, 0, 65541, 1, 0, 65542, 2, 0, 65543, 1, 0, 131079, 2, 0, 196615, 1, 0, 262151, 2, 0, 262144, 1, 0, 196608, 2, 0, 131072, 1, 0, 131073, 2, 0, 196610, 2, 0, 262147, 2, 0, 196609, 1, 0, 262145, 2, 0, 131074, 1, 0, 262146, 1, 0, 131075, 2, 0, 196611, 1, 0, 131076, 1, 0, 196612, 2, 0, 262148, 1, 0, 131077, 2, 0, 196613, 1, 0, 262149, 2, 0, 131078, 1, 0, 196614, 2, 0, 262150, 1, 0, 262152, 1, 0, 131080, 1, 0, 196616, 2, 0, 65544, 2, 0, 2, 1, 0, 6, 1, 0, 8, 1, 0, 1, 2, 0, 5, 2, 0, 7, 2, 0, 65540, 2, 0, 3, 2, 0, 4, 1, 0, 0, 1, 0)
+script = ExtResource("4_12y7e")
+
+[node name="Camera2D" type="Camera2D" parent="MainGrid"]
+position = Vector2(-164, -92)
+anchor_mode = 0
+
+[node name="Towers" type="Node2D" parent="MainGrid"]
+
+[node name="PassiveIncomeTimer" type="Timer" parent="MainGrid"]
+wait_time = 10.0
+autostart = true
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_left = -9.0
+offset_top = -83.0
+offset_right = 855.0
+
+[node name="Towers" type="Control" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="Basic_Shooter_button" type="Button" parent="PanelContainer/Towers"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -1.0
+offset_right = 113.0
+offset_bottom = 84.0
+text = "TEMP"
+
+[node name="Basic_Shooter_Recharge" type="ProgressBar" parent="PanelContainer/Towers/Basic_Shooter_button"]
+layout_mode = 0
+offset_top = 56.0
+offset_right = 112.0
+offset_bottom = 85.0
+show_percentage = false
+
+[node name="Resource_Cost" type="Label" parent="PanelContainer/Towers/Basic_Shooter_button"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 2.0
+offset_right = 78.0
+offset_bottom = 25.0
+text = "100
+"
+
+[node name="Resource_Generator_button" type="Button" parent="PanelContainer/Towers"]
+layout_mode = 0
+offset_left = 111.0
+offset_right = 216.0
+offset_bottom = 81.0
+text = "TEMP_RES"
+
+[node name="Resource_Generator_Recharge" type="ProgressBar" parent="PanelContainer/Towers/Resource_Generator_button"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 61.0
+offset_right = 101.0
+offset_bottom = 83.0
+show_percentage = false
+
+[node name="Resource_Cost" type="Label" parent="PanelContainer/Towers/Resource_Generator_button"]
+layout_mode = 0
+offset_left = 39.0
+offset_right = 79.0
+offset_bottom = 23.0
+text = "50"
+
+[node name="Wall_button" type="Button" parent="PanelContainer/Towers"]
+layout_mode = 0
+offset_left = 216.0
+offset_top = -2.0
+offset_right = 321.0
+offset_bottom = 79.0
+text = "WALL"
+
+[node name="Wall_Recharge" type="ProgressBar" parent="PanelContainer/Towers/Wall_button"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 57.0
+offset_right = 102.0
+offset_bottom = 84.0
+show_percentage = false
+
+[node name="Resource_Cost" type="Label" parent="PanelContainer/Towers/Wall_button"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 2.0
+offset_right = 76.0
+offset_bottom = 25.0
+text = "50"
+
+[node name="Mine_button" type="Button" parent="PanelContainer/Towers"]
+layout_mode = 0
+offset_left = 319.0
+offset_right = 418.0
+offset_bottom = 82.0
+text = "MINE"
+
+[node name="Mine_Recharge" type="ProgressBar" parent="PanelContainer/Towers/Mine_button"]
+layout_mode = 0
+offset_top = 55.0
+offset_right = 98.0
+offset_bottom = 82.0
+show_percentage = false
+
+[node name="Resource_Cost" type="Label" parent="PanelContainer/Towers/Mine_button"]
+layout_mode = 0
+offset_left = 29.0
+offset_right = 69.0
+offset_bottom = 23.0
+text = "25"
+
+[node name="Lane1path" type="Path2D" parent="."]
+curve = SubResource("Curve2D_n0c6g")
+
+[node name="Lane2path" type="Path2D" parent="."]
+curve = SubResource("Curve2D_a8ccb")
+
+[node name="Lane3path" type="Path2D" parent="."]
+curve = SubResource("Curve2D_0hthd")
+
+[node name="Lane4path" type="Path2D" parent="."]
+curve = SubResource("Curve2D_iqxjh")
+
+[node name="Lane5path" type="Path2D" parent="."]
+curve = SubResource("Curve2D_c74w4")
+
+[node name="ResourceCount" type="Label" parent="."]
+offset_left = -164.0
+offset_top = -85.0
+offset_right = -7.0
+offset_bottom = -2.0
+
+[node name="SpawingAlgorithm" type="Node" parent="."]
+script = ExtResource("5_xfpsw")
+
+[node name="PauseButton" type="Button" parent="."]
+offset_left = 857.0
+offset_top = -87.0
+offset_right = 974.0
+offset_bottom = -2.0
+text = "PAUSE"
+
+[node name="PauseMenu" type="Node2D" parent="."]
+process_mode = 2
+visible = false
+script = ExtResource("6_bn34x")
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu"]
+offset_right = 976.0
+offset_bottom = 541.0
+texture = ExtResource("7_h83h8")
+
+[node name="Resume" type="TextureButton" parent="PauseMenu/TextureRect"]
+layout_mode = 0
+offset_left = 184.0
+offset_top = 332.0
+offset_right = 377.0
+offset_bottom = 481.0
+texture_normal = ExtResource("8_n244o")
+texture_pressed = ExtResource("9_xwa7r")
+
+[connection signal="child_exiting_tree" from="MainGrid/Towers" to="MainGrid" method="_on_towers_child_exiting_tree"]
+[connection signal="timeout" from="MainGrid/PassiveIncomeTimer" to="MainGrid" method="_on_passive_income_timer_timeout"]
+[connection signal="pressed" from="PanelContainer/Towers/Basic_Shooter_button" to="MainGrid" method="_on_tower_button_pressed"]
+[connection signal="pressed" from="PanelContainer/Towers/Resource_Generator_button" to="MainGrid" method="_on_resource_producer_button_pressed"]
+[connection signal="pressed" from="PanelContainer/Towers/Wall_button" to="MainGrid" method="_on_wall_button_pressed"]
+[connection signal="pressed" from="PanelContainer/Towers/Mine_button" to="MainGrid" method="_on_mine_button_pressed"]
+[connection signal="last_wave" from="SpawingAlgorithm" to="." method="_on_spawing_algorithm_last_wave"]
+[connection signal="spawn_new_wave" from="SpawingAlgorithm" to="." method="_on_spawing_algorithm_spawn_new_wave"]
+[connection signal="pressed" from="PauseButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="PauseButton" to="PauseMenu" method="_on_pause_button_pressed"]
+[connection signal="pressed" from="PauseMenu/TextureRect/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseMenu/TextureRect/Resume" to="PauseMenu" method="_on_resume_pressed"]

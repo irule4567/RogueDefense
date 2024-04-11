@@ -1,10 +1,100 @@
-[gd_scene load_steps=5 format=3 uid="uid://cw2xtiw1miap6"]
+[gd_scene load_steps=17 format=3 uid="uid://cw2xtiw1miap6"]
 
 [ext_resource type="Script" path="res://Towers/Basic_Shooter.gd" id="1_aos4t"]
-[ext_resource type="Texture2D" uid="uid://cdh804vgjp2jd" path="res://icon.svg" id="2_qihr1"]
+[ext_resource type="Texture2D" uid="uid://bb56lvtudg35w" path="res://Assets/Tiny Swords (Update 010)/Factions/Knights/Troops/Archer/Blue/Archer_Blue.png" id="2_dchjg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4fudr"]
 size = Vector2(131, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ilebd"]
+atlas = ExtResource("2_dchjg")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfltl"]
+atlas = ExtResource("2_dchjg")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vh1a"]
+atlas = ExtResource("2_dchjg")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_alm60"]
+atlas = ExtResource("2_dchjg")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fm1r4"]
+atlas = ExtResource("2_dchjg")
+region = Rect2(768, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1n7r2"]
+atlas = ExtResource("2_dchjg")
+region = Rect2(960, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2bfr"]
+atlas = ExtResource("2_dchjg")
+region = Rect2(576, 768, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ta34"]
+atlas = ExtResource("2_dchjg")
+region = Rect2(768, 768, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1ysd"]
+atlas = ExtResource("2_dchjg")
+region = Rect2(960, 768, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_unba2"]
+atlas = ExtResource("2_dchjg")
+region = Rect2(1152, 768, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h84t3"]
+atlas = ExtResource("2_dchjg")
+region = Rect2(1344, 768, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2prgv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ilebd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfltl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vh1a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_alm60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fm1r4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1n7r2")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a2bfr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ta34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1ysd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_unba2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h84t3")
+}],
+"loop": true,
+"name": &"Shoot",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bnhwo"]
 size = Vector2(836, 100)
@@ -18,12 +108,14 @@ script = ExtResource("1_aos4t")
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_4fudr")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Animation" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 2)
 scale = Vector2(1, 0.8125)
-texture = ExtResource("2_qihr1")
+sprite_frames = SubResource("SpriteFrames_2prgv")
+animation = &"Shoot"
+frame_progress = 0.180161
 
-[node name="ShotPosition" type="Node2D" parent="Sprite2D"]
+[node name="ShotPosition" type="Node2D" parent="Animation"]
 
 [node name="Aggro Range" type="Area2D" parent="."]
 
@@ -44,6 +136,7 @@ offset_bottom = 111.0
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="animation_looped" from="Animation" to="." method="_on_animation_animation_looped"]
 [connection signal="area_entered" from="Aggro Range" to="." method="_on_aggro_range_area_entered"]
 [connection signal="area_exited" from="Aggro Range" to="." method="_on_aggro_range_area_exited"]
 [connection signal="timeout" from="Shot timer" to="." method="_on_shot_timer_timeout"]

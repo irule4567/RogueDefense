@@ -5,11 +5,13 @@ var shotReady
 var health = TowerProperties.tower_data["Basic_Shooter"].get("health")
 var enemies_attacking
 @onready var test_hp = $Test
+@onready var _animated_sprite = $Animation
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	enemies_attacking = []
 	enemiesInRange = 0
+	_animated_sprite.play("Idle")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,10 +20,10 @@ func _process(delta):
 		die()
 	if enemiesInRange >= 1 && shotReady == true:
 		#print("Shot fired")
-		var shot = load("res://Tower_shots/Basic_Shot.tscn").instantiate()
-		shot.position = $Sprite2D/ShotPosition.position
+		play_anim("Shoot")
 		shotReady = false
-		get_node("Shots").add_child(shot, true)
+	elif enemiesInRange == 0:
+		play_anim("Idle")
 	for i in enemies_attacking:
 		health = health - EnemyProperties.enemy_data[i.name]["attack"]
 
@@ -51,7 +53,18 @@ func _on_area_entered(area):
 func die():
 	self.queue_free()
 
+func play_anim(anim):
+	if _animated_sprite.animation != anim:
+		_animated_sprite.play(anim)
+
 
 func _on_area_exited(area):
 	if enemies_attacking.find(area) != -1: # If the area that left was an enemy
 		enemies_attacking.erase(area)
+
+
+func _on_animation_animation_looped():
+	if _animated_sprite.animation == "Shoot":
+		var shot = load("res://Tower_shots/Basic_Shot.tscn").instantiate()
+		shot.position = $Animation/ShotPosition.position
+		get_node("Shots").add_child(shot, true)

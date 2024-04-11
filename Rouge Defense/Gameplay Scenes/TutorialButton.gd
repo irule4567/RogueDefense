@@ -1,5 +1,5 @@
 extends Button
-@onready var main_game = preload("res://Gameplay Scenes/basic_level.tscn").instantiate()
+@onready var main_game = preload("res://Gameplay Scenes/Tutorial.tscn").instantiate()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,4 +12,4 @@ func _process(delta):
 
 
 func _on_pressed():
-	get_tree().change_scene_to_file("res://Gameplay Scenes/basic_level.tscn")
+	get_tree().change_scene_to_file("res://Gameplay Scenes/Tutorial.tscn")
