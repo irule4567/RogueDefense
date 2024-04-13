@@ -1,10 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxd1obec1aopu"]
+[gd_scene load_steps=6 format=3 uid="uid://bxd1obec1aopu"]
 
 [ext_resource type="Script" path="res://Towers/Wall.gd" id="1_j35m6"]
-[ext_resource type="Texture2D" uid="uid://dvnchjwbjdyxn" path="res://Assets/Wall.png" id="1_nfxwq"]
+[ext_resource type="Texture2D" uid="uid://b7sp0s77tby8f" path="res://Assets/basic_tileset_and_assets_standard/fence_tiles.png" id="2_es2uh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n1nla"]
 size = Vector2(102, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qyd3c"]
+atlas = ExtResource("2_es2uh")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pptk8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qyd3c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Wall" type="Area2D"]
 light_mask = 8
@@ -15,9 +30,10 @@ script = ExtResource("1_j35m6")
 position = Vector2(2, -4)
 shape = SubResource("RectangleShape2D_n1nla")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("1_nfxwq")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(3, 2.5)
+scale = Vector2(2.375, 1.26563)
+sprite_frames = SubResource("SpriteFrames_pptk8")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
