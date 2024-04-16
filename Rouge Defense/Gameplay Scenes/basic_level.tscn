@@ -1,14 +1,29 @@
-[gd_scene load_steps=18 format=3 uid="uid://crxk4sjgn3glw"]
+[gd_scene load_steps=33 format=3 uid="uid://crxk4sjgn3glw"]
 
 [ext_resource type="Script" path="res://Gameplay Scenes/testing.gd" id="1_ofgqn"]
 [ext_resource type="Texture2D" uid="uid://cj8ivpf3e30re" path="res://Assets/Green_Tile.png" id="2_kmmka"]
 [ext_resource type="Texture2D" uid="uid://vadgd1lyvnhr" path="res://Assets/Brown_Tile.png" id="3_pgcty"]
 [ext_resource type="Script" path="res://Gameplay Scenes/MainGrid.gd" id="4_12y7e"]
+[ext_resource type="Texture2D" uid="uid://dq7s8vpq8ecug" path="res://Assets/Archer_Blue_Icon.png" id="5_sq067"]
 [ext_resource type="Script" path="res://Gameplay Scenes/SpawingAlgorithm.gd" id="5_xfpsw"]
+[ext_resource type="Texture2D" uid="uid://5abx618tti48" path="res://Assets/Archer_Blue_Icon_pressed.png" id="6_376fs"]
 [ext_resource type="Script" path="res://Gameplay Scenes/PauseMenu.gd" id="6_bn34x"]
+[ext_resource type="Texture2D" uid="uid://ccfa6p6tij3h1" path="res://Assets/Archer_Blue_Icon_hover.png" id="6_buewv"]
+[ext_resource type="Texture2D" uid="uid://71judsvvva8q" path="res://Assets/GoldMine_Icon.png" id="6_o067g"]
+[ext_resource type="Texture2D" uid="uid://bkykkuwx7obbq" path="res://Assets/fence_tiles_icon.png" id="7_a2dux"]
 [ext_resource type="Texture2D" uid="uid://ryjqnx0fvu4c" path="res://Assets/Title.png" id="7_h83h8"]
-[ext_resource type="Texture2D" uid="uid://bxrjt1t6o027j" path="res://Assets/UI_Icons_By_VerzatileDev/Individual/Uicons_IndividualWhite/UI_IconsWhiteIndividual_g683.png" id="8_n244o"]
-[ext_resource type="Texture2D" uid="uid://didjafbkwr5bj" path="res://Assets/UI_Icons_By_VerzatileDev/Individual/Uicons_IndividualWhite/UI_IconsWhiteIndividual_g708.png" id="9_xwa7r"]
+[ext_resource type="Texture2D" uid="uid://gr3svguljbxg" path="res://Assets/Barrel_Red_icon.png" id="8_gr7rw"]
+[ext_resource type="Texture2D" uid="uid://c346acmcbmoxe" path="res://Assets/GoldMine_Icon_pressed.png" id="9_yt1e3"]
+[ext_resource type="Texture2D" uid="uid://d06e5maf5a8fj" path="res://Assets/GoldMine_Icon_hover.png" id="10_n4hyc"]
+[ext_resource type="Texture2D" uid="uid://451qjmc0j0yj" path="res://Assets/fence_tiles_icon_pressed.png" id="12_85wjg"]
+[ext_resource type="Texture2D" uid="uid://mh7iv5g5gnxw" path="res://Assets/fence_tiles_icon_hover.png" id="13_unl2u"]
+[ext_resource type="Texture2D" uid="uid://de3t1myltwo7m" path="res://Assets/Barrel_Red_icon_pressed.png" id="15_7bt0j"]
+[ext_resource type="Texture2D" uid="uid://brakjsv1vppj4" path="res://Assets/Barrel_Red_icon_hover.png" id="16_5w3d6"]
+[ext_resource type="Texture2D" uid="uid://c23unpbjef81b" path="res://Assets/UI_Icons_By_VerzatileDev/Individual/Uicons_IndividualWhite/UI_IconsWhiteIndividual_g685.png" id="18_wo4vb"]
+[ext_resource type="Texture2D" uid="uid://bsn4aetd4bjuq" path="res://Assets/UI_Icons_By_VerzatileDev/Individual/Uicons_IndividualDark/UI_IconsDarkIndividual_g685.png" id="19_2tppn"]
+[ext_resource type="Texture2D" uid="uid://dqdflkqs1hd63" path="res://Assets/ExportedIcons/Icon_Play.png" id="20_gugrg"]
+[ext_resource type="Texture2D" uid="uid://sgoghr30xb3l" path="res://Assets/ExportedIcons/Icon_Skull.png" id="21_65rvl"]
+[ext_resource type="Texture2D" uid="uid://32xld85ogaef" path="res://Assets/ExportedIcons/Icon_Home.png" id="22_oaq87"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ymea"]
 texture = ExtResource("2_kmmka")
@@ -135,103 +150,127 @@ wait_time = 10.0
 autostart = true
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-offset_left = -9.0
+offset_left = -3.0
 offset_top = -83.0
 offset_right = 855.0
 
 [node name="Towers" type="Control" parent="PanelContainer"]
 layout_mode = 2
 
-[node name="Basic_Shooter_button" type="Button" parent="PanelContainer/Towers"]
+[node name="Basic_Shooter_button" type="TextureButton" parent="PanelContainer/Towers"]
 layout_mode = 0
-offset_left = 3.0
-offset_top = -1.0
-offset_right = 113.0
-offset_bottom = 84.0
-text = "TEMP"
+offset_right = 100.0
+offset_bottom = 83.0
+toggle_mode = true
+texture_normal = ExtResource("5_sq067")
+texture_pressed = ExtResource("6_376fs")
+texture_hover = ExtResource("6_buewv")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="Basic_Shooter_Recharge" type="ProgressBar" parent="PanelContainer/Towers/Basic_Shooter_button"]
 layout_mode = 0
-offset_top = 56.0
-offset_right = 112.0
-offset_bottom = 85.0
+offset_left = 3.0
+offset_top = 51.0
+offset_right = 109.0
+offset_bottom = 80.0
 show_percentage = false
 
 [node name="Resource_Cost" type="Label" parent="PanelContainer/Towers/Basic_Shooter_button"]
 layout_mode = 0
-offset_left = 38.0
-offset_top = 2.0
-offset_right = 78.0
-offset_bottom = 25.0
+offset_left = 35.0
+offset_top = 55.0
+offset_right = 75.0
+offset_bottom = 78.0
 text = "100
 "
+horizontal_alignment = 1
 
-[node name="Resource_Generator_button" type="Button" parent="PanelContainer/Towers"]
+[node name="Resource_Generator_button" type="TextureButton" parent="PanelContainer/Towers"]
 layout_mode = 0
-offset_left = 111.0
-offset_right = 216.0
-offset_bottom = 81.0
-text = "TEMP_RES"
+offset_left = 100.0
+offset_right = 200.0
+offset_bottom = 80.0
+toggle_mode = true
+texture_normal = ExtResource("6_o067g")
+texture_pressed = ExtResource("9_yt1e3")
+texture_hover = ExtResource("10_n4hyc")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="Resource_Generator_Recharge" type="ProgressBar" parent="PanelContainer/Towers/Resource_Generator_button"]
 layout_mode = 0
-offset_left = 1.0
-offset_top = 61.0
-offset_right = 101.0
-offset_bottom = 83.0
+offset_left = 2.0
+offset_top = 54.0
+offset_right = 102.0
+offset_bottom = 76.0
 show_percentage = false
 
 [node name="Resource_Cost" type="Label" parent="PanelContainer/Towers/Resource_Generator_button"]
 layout_mode = 0
-offset_left = 39.0
-offset_right = 79.0
-offset_bottom = 23.0
+offset_left = 37.0
+offset_top = 53.0
+offset_right = 72.0
+offset_bottom = 76.0
 text = "50"
+horizontal_alignment = 1
 
-[node name="Wall_button" type="Button" parent="PanelContainer/Towers"]
+[node name="Wall_button" type="TextureButton" parent="PanelContainer/Towers"]
 layout_mode = 0
-offset_left = 216.0
-offset_top = -2.0
-offset_right = 321.0
-offset_bottom = 79.0
-text = "WALL"
+offset_left = 200.0
+offset_right = 300.0
+offset_bottom = 80.0
+toggle_mode = true
+texture_normal = ExtResource("7_a2dux")
+texture_pressed = ExtResource("12_85wjg")
+texture_hover = ExtResource("13_unl2u")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="Wall_Recharge" type="ProgressBar" parent="PanelContainer/Towers/Wall_button"]
 layout_mode = 0
-offset_left = 3.0
-offset_top = 57.0
-offset_right = 102.0
-offset_bottom = 84.0
+offset_top = 46.0
+offset_right = 99.0
+offset_bottom = 73.0
 show_percentage = false
 
 [node name="Resource_Cost" type="Label" parent="PanelContainer/Towers/Wall_button"]
 layout_mode = 0
-offset_left = 36.0
-offset_top = 2.0
-offset_right = 76.0
-offset_bottom = 25.0
+offset_left = 25.0
+offset_top = 47.0
+offset_right = 65.0
+offset_bottom = 70.0
 text = "50"
+horizontal_alignment = 1
 
-[node name="Mine_button" type="Button" parent="PanelContainer/Towers"]
+[node name="Mine_button" type="TextureButton" parent="PanelContainer/Towers"]
 layout_mode = 0
-offset_left = 319.0
-offset_right = 418.0
-offset_bottom = 82.0
-text = "MINE"
+offset_left = 300.0
+offset_right = 400.0
+offset_bottom = 80.0
+toggle_mode = true
+texture_normal = ExtResource("8_gr7rw")
+texture_pressed = ExtResource("15_7bt0j")
+texture_hover = ExtResource("16_5w3d6")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="Mine_Recharge" type="ProgressBar" parent="PanelContainer/Towers/Mine_button"]
 layout_mode = 0
-offset_top = 55.0
-offset_right = 98.0
-offset_bottom = 82.0
+offset_left = 4.0
+offset_top = 49.0
+offset_right = 102.0
+offset_bottom = 76.0
 show_percentage = false
 
 [node name="Resource_Cost" type="Label" parent="PanelContainer/Towers/Mine_button"]
 layout_mode = 0
-offset_left = 29.0
-offset_right = 69.0
-offset_bottom = 23.0
+offset_left = 35.0
+offset_top = 49.0
+offset_right = 75.0
+offset_bottom = 72.0
 text = "25"
+horizontal_alignment = 1
 
 [node name="Lane1path" type="Path2D" parent="."]
 curve = SubResource("Curve2D_n0c6g")
@@ -257,12 +296,15 @@ offset_bottom = -2.0
 [node name="SpawingAlgorithm" type="Node" parent="."]
 script = ExtResource("5_xfpsw")
 
-[node name="PauseButton" type="Button" parent="."]
+[node name="PauseButton" type="TextureButton" parent="."]
 offset_left = 857.0
 offset_top = -87.0
 offset_right = 974.0
 offset_bottom = -2.0
-text = "PAUSE"
+texture_normal = ExtResource("18_wo4vb")
+texture_pressed = ExtResource("19_2tppn")
+ignore_texture_size = true
+stretch_mode = 0
 
 [node name="PauseMenu" type="Node2D" parent="."]
 process_mode = 2
@@ -270,8 +312,9 @@ visible = false
 script = ExtResource("6_bn34x")
 
 [node name="TextureRect" type="TextureRect" parent="PauseMenu"]
+offset_top = -88.0
 offset_right = 976.0
-offset_bottom = 541.0
+offset_bottom = 564.0
 texture = ExtResource("7_h83h8")
 
 [node name="Resume" type="TextureButton" parent="PauseMenu/TextureRect"]
@@ -280,8 +323,36 @@ offset_left = 184.0
 offset_top = 332.0
 offset_right = 377.0
 offset_bottom = 481.0
-texture_normal = ExtResource("8_n244o")
-texture_pressed = ExtResource("9_xwa7r")
+texture_normal = ExtResource("20_gugrg")
+texture_pressed = ExtResource("21_65rvl")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PauseMenu/TextureRect"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 269.0
+offset_right = 365.0
+offset_bottom = 329.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 30
+text = "Resume"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="PauseMenu/TextureRect"]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 268.0
+offset_right = 789.0
+offset_bottom = 340.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 30
+text = "Return to Title Screen"
+
+[node name="ExitToMenu" type="TextureButton" parent="PauseMenu/TextureRect"]
+layout_mode = 0
+offset_left = 507.0
+offset_top = 317.0
+offset_right = 708.0
+offset_bottom = 536.0
+texture_normal = ExtResource("22_oaq87")
 
 [connection signal="child_exiting_tree" from="MainGrid/Towers" to="MainGrid" method="_on_towers_child_exiting_tree"]
 [connection signal="timeout" from="MainGrid/PassiveIncomeTimer" to="MainGrid" method="_on_passive_income_timer_timeout"]
@@ -295,3 +366,4 @@ texture_pressed = ExtResource("9_xwa7r")
 [connection signal="pressed" from="PauseButton" to="PauseMenu" method="_on_pause_button_pressed"]
 [connection signal="pressed" from="PauseMenu/TextureRect/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/TextureRect/Resume" to="PauseMenu" method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseMenu/TextureRect/ExitToMenu" to="." method="_on_exit_to_menu_pressed"]

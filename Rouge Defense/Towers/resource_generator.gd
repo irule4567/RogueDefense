@@ -3,7 +3,8 @@ extends Area2D
 
 var health = TowerProperties.tower_data["Resource_Generator"].get("health")
 var enemies_attacking
-@onready var mainGrid = $/root/BasicLevel/MainGrid
+@onready var mainGrid = get_node("../..")
+#@onready var mainGrid = $MainGrid
 @onready var _animated_sprite = $Animation
 @onready var gen_timer = $GenerationTimer
 

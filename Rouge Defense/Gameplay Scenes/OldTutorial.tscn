@@ -1,13 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://ckc5nobrl0r3"]
+[gd_scene load_steps=9 format=3 uid="uid://1rjd0fftp1fs"]
 
-[ext_resource type="PackedScene" uid="uid://crxk4sjgn3glw" path="res://Gameplay Scenes/basic_level.tscn" id="1_u46d6"]
-[ext_resource type="Script" path="res://Gameplay Scenes/Tutorial.gd" id="2_8ywqb"]
-[ext_resource type="Script" path="res://Gameplay Scenes/TutorialMainGrid.gd" id="2_hag14"]
-[ext_resource type="Script" path="res://Gameplay Scenes/TutorialText.gd" id="5_4g20u"]
-[ext_resource type="Texture2D" uid="uid://xmh2s6b7gsts" path="res://Assets/ExportedIcons/Icon_Focus.png" id="6_jcgiq"]
-[ext_resource type="Texture2D" uid="uid://dy6lqr2se6l27" path="res://Assets/ExportedIcons/Icon_ArrowUp.png" id="6_rb6ko"]
+[ext_resource type="PackedScene" uid="uid://h1jrfc40y2b8" path="res://Gameplay Scenes/testing.tscn" id="1_sc3gp"]
+[ext_resource type="Script" path="res://Gameplay Scenes/Tutorial.gd" id="2_0ql8k"]
+[ext_resource type="Script" path="res://Gameplay Scenes/TutorialMainGrid.gd" id="3_3560o"]
+[ext_resource type="Script" path="res://Gameplay Scenes/TutorialSpawingAlgorithm.gd" id="4_nvcrk"]
+[ext_resource type="Script" path="res://Gameplay Scenes/TutorialText.gd" id="5_4udnx"]
+[ext_resource type="Texture2D" uid="uid://xmh2s6b7gsts" path="res://Assets/ExportedIcons/Icon_Focus.png" id="6_1vy8a"]
+[ext_resource type="Texture2D" uid="uid://dy6lqr2se6l27" path="res://Assets/ExportedIcons/Icon_ArrowUp.png" id="7_lq538"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ntk05"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kk0u1"]
 bg_color = Color(0, 0, 0, 1)
 border_width_left = 5
 border_width_top = 5
@@ -15,28 +16,28 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color(1, 1, 1, 1)
 
-[node name="Tutorial" instance=ExtResource("1_u46d6")]
-script = ExtResource("2_8ywqb")
+[node name="Tutorial" instance=ExtResource("1_sc3gp")]
+script = ExtResource("2_0ql8k")
 
 [node name="MainGrid" parent="." index="0"]
-script = ExtResource("2_hag14")
+script = ExtResource("3_3560o")
+
+[node name="PassiveIncomeTimer" parent="MainGrid" index="2"]
+autostart = false
 
 [node name="SpawingAlgorithm" parent="." index="8"]
-script = null
-
-[node name="PauseButton" parent="." index="9"]
-visible = false
+script = ExtResource("4_nvcrk")
 
 [node name="TutorialText" type="CanvasLayer" parent="." index="11"]
 follow_viewport_enabled = true
-script = ExtResource("5_4g20u")
+script = ExtResource("5_4udnx")
 
 [node name="ShooterArea" type="TextureRect" parent="TutorialText" index="0"]
 visible = false
 offset_top = 215.0
 offset_right = 114.0
 offset_bottom = 324.0
-texture = ExtResource("6_jcgiq")
+texture = ExtResource("6_1vy8a")
 expand_mode = 1
 
 [node name="ResourceArea" type="TextureRect" parent="TutorialText" index="1"]
@@ -45,7 +46,7 @@ offset_left = 106.0
 offset_top = 212.0
 offset_right = 222.0
 offset_bottom = 323.0
-texture = ExtResource("6_jcgiq")
+texture = ExtResource("6_1vy8a")
 expand_mode = 1
 
 [node name="ResourceArrow" type="TextureRect" parent="TutorialText" index="2"]
@@ -54,7 +55,7 @@ offset_left = -151.0
 offset_top = 11.0
 offset_right = -17.0
 offset_bottom = 162.0
-texture = ExtResource("6_rb6ko")
+texture = ExtResource("7_lq538")
 expand_mode = 1
 
 [node name="TowerArrow" type="TextureRect" parent="TutorialText" index="3"]
@@ -63,7 +64,7 @@ offset_left = 100.0
 offset_top = 13.0
 offset_right = 278.0
 offset_bottom = 189.0
-texture = ExtResource("6_rb6ko")
+texture = ExtResource("7_lq538")
 expand_mode = 1
 
 [node name="GeneratorArrow" type="TextureRect" parent="TutorialText" index="4"]
@@ -72,7 +73,7 @@ offset_left = 112.0
 offset_top = 2.0
 offset_right = 210.0
 offset_bottom = 124.0
-texture = ExtResource("6_rb6ko")
+texture = ExtResource("7_lq538")
 expand_mode = 1
 
 [node name="TextboxContainer" type="MarginContainer" parent="TutorialText" index="5"]
@@ -87,7 +88,7 @@ theme_override_constants/margin_bottom = -16
 
 [node name="Panel" type="Panel" parent="TutorialText/TextboxContainer" index="0"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ntk05")
+theme_override_styles/panel = SubResource("StyleBoxFlat_kk0u1")
 
 [node name="MarginContainer" type="MarginContainer" parent="TutorialText/TextboxContainer" index="1"]
 layout_mode = 2
@@ -106,7 +107,6 @@ layout_mode = 2
 layout_mode = 2
 text = "Test"
 
-[connection signal="tutorial_over" from="." to="TutorialText" method="_on_tutorial_tutorial_over"]
 [connection signal="tutorial_gen_place" from="MainGrid" to="TutorialText" method="_on_main_grid_tutorial_gen_place"]
 [connection signal="tutorial_shoot_place" from="MainGrid" to="TutorialText" method="_on_main_grid_tutorial_shoot_place"]
 [connection signal="end_tutorial" from="TutorialText" to="." method="_on_tutorial_text_end_tutorial"]

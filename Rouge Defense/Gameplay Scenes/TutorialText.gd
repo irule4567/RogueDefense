@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+#@onready var main_menu = preload("res://Gameplay Scenes/main_menu.tscn").instantiate()
+
 @onready var text = $TextboxContainer/MarginContainer/HBoxContainer/Dialogue
 @onready var resource_arrow = $ResourceArrow
 @onready var tower_arrow = $TowerArrow
@@ -12,7 +14,7 @@ extends CanvasLayer
 "You need these resources to place your towers, which will show up here." ,"You generate resources over time, \nbut you’ll want to also place some resource producers to speed up your resource generation.",
 "Here, place a resource generator in the selected area.", "Great work.", "However, you’re going to need more than just resources to defend yourself.",
 "Since we’re in a hurry, I’ll give you some resources right now.", "Now use those resources to place a basic shooter in the middle row, I think I see some enemies.",
-"Here they come! \nYou can handle this yourself now, right?"]
+"Here they come! \nYou can handle this yourself now, right?", "Great work. This ends the basic tutorial.", "Be sure to experiment with new towers as you progress."]
 var dialogue_num
 var dialogue_active
 
@@ -67,11 +69,12 @@ func _input(event):
 				emit_signal("show_shooter")
 			if dialogue_num == 13:
 				shooter_area.hide()
-			#print(dialogue.size())
-			if dialogue_num == dialogue.size():
 				emit_signal("end_tutorial")
 				text_box.hide()
 				dialogue_active = false
+			#print(dialogue.size())
+			if dialogue_num == dialogue.size():
+				get_tree().change_scene_to_file("res://Gameplay Scenes/main_menu.tscn")
 
 
 func _on_main_grid_tutorial_gen_place():
@@ -84,3 +87,8 @@ func _on_main_grid_tutorial_shoot_place():
 	dialogue_active = true
 	text_box.show()
 	shooter_area.hide()
+
+
+func _on_tutorial_tutorial_over():
+	dialogue_active = true
+	text_box.show()

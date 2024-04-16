@@ -7,6 +7,7 @@ extends Node2D
 
 var enemy_spawned
 var enemy
+signal tutorial_over
 
 #@onready var tutorialText = $/root/Tutorial/TutorialText
 
@@ -27,7 +28,7 @@ func _process(delta):
 	#print(is_instance_valid(enemy))
 	#print(enemy_spawned)
 	if enemy_spawned == true and !(is_instance_valid(enemy)): # Enemy has spawned and is dead
-		print("Tutorial over")
+		emit_signal("tutorial_over")
 
 
 func _on_tutorial_text_show_producer():

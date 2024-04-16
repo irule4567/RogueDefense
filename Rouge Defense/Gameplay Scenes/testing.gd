@@ -1,5 +1,7 @@
 extends Node2D
 
+#@onready var main_game = preload("res://Gameplay Scenes/main_menu.tscn").instantiate()
+
 var enemies = [] # Tracks enemy count, used for determining end of level
 var last_wave
 var all_enemies_spawned
@@ -31,7 +33,13 @@ func _on_button_pressed():
 
 func _on_resume_pressed():
 	get_tree().paused = false
+	
 
 
 func _on_spawing_algorithm_last_wave():
 	last_wave = true
+
+
+func _on_exit_to_menu_pressed():
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://Gameplay Scenes/main_menu.tscn")

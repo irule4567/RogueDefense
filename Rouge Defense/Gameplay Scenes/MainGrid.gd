@@ -46,8 +46,10 @@ func _process(delta):
 	# Check for click, selected tower, resources, tile exists, and recharge
 	if Input.is_action_pressed("Click") && building == true && TowerProperties.tower_data[Selected_tower].cost <= resource_count && Dic.has(str(tile)) && recharges[deck.find(TowerProperties.tower_data[Selected_tower])].time_left == 0:
 		#print("Place tower ", Selected_tower, " at position", Dic[str(tile)])
-		if Dic[str(tile)]["Taken"] == false:
+		if Dic[str(tile)]["Taken"] == false: # Tower is placed
 			Dic[str(tile)]["Taken"] = true
+			var tower_button = get_node("../PanelContainer/Towers/" + Selected_tower + "_button")
+			tower_button.button_pressed = false
 			var new_tower = load("res://Towers/" + Selected_tower + ".tscn").instantiate()
 			get_node("Towers").add_child(new_tower, true)
 			new_tower.position = tile*Vector2i(108,108)+Vector2i(54,54)
