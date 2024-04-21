@@ -4,10 +4,16 @@ var self_properties = EnemyProperties.enemy_data.get("Basic_enemy")
 var speed = self_properties["speed"]
 @onready var _animated_sprite = $Basic_enemy/Animation
 
+
 func _ready():
 	_animated_sprite.play("Walk")
+	
 
 func _physics_process(delta):
+	#print(progress_ratio)
+	if progress_ratio == 1:
+		_animated_sprite.play("Attack")
+		SignalBus.game_over.emit()
 	move(delta)
 
 func move(delta):

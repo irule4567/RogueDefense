@@ -8,6 +8,9 @@ func _ready():
 	_animated_sprite.play("Walk")
 
 func _physics_process(delta):
+	if progress_ratio == 1:
+		_animated_sprite.play("Attack")
+		SignalBus.game_over.emit()
 	move(delta)
 
 func move(delta):

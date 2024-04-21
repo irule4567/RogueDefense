@@ -1,6 +1,7 @@
-[gd_scene load_steps=33 format=3 uid="uid://crxk4sjgn3glw"]
+[gd_scene load_steps=44 format=3 uid="uid://crxk4sjgn3glw"]
 
 [ext_resource type="Script" path="res://Gameplay Scenes/testing.gd" id="1_ofgqn"]
+[ext_resource type="Texture2D" uid="uid://bd6sav1sa26m" path="res://Assets/basic_tileset_and_assets_standard/terrain_tiles_v2.png" id="2_dhnxw"]
 [ext_resource type="Texture2D" uid="uid://cj8ivpf3e30re" path="res://Assets/Green_Tile.png" id="2_kmmka"]
 [ext_resource type="Texture2D" uid="uid://vadgd1lyvnhr" path="res://Assets/Brown_Tile.png" id="3_pgcty"]
 [ext_resource type="Script" path="res://Gameplay Scenes/MainGrid.gd" id="4_12y7e"]
@@ -22,8 +23,29 @@
 [ext_resource type="Texture2D" uid="uid://c23unpbjef81b" path="res://Assets/UI_Icons_By_VerzatileDev/Individual/Uicons_IndividualWhite/UI_IconsWhiteIndividual_g685.png" id="18_wo4vb"]
 [ext_resource type="Texture2D" uid="uid://bsn4aetd4bjuq" path="res://Assets/UI_Icons_By_VerzatileDev/Individual/Uicons_IndividualDark/UI_IconsDarkIndividual_g685.png" id="19_2tppn"]
 [ext_resource type="Texture2D" uid="uid://dqdflkqs1hd63" path="res://Assets/ExportedIcons/Icon_Play.png" id="20_gugrg"]
+[ext_resource type="Script" path="res://Gameplay Scenes/VictoryScreen.gd" id="21_8x51s"]
 [ext_resource type="Texture2D" uid="uid://sgoghr30xb3l" path="res://Assets/ExportedIcons/Icon_Skull.png" id="21_65rvl"]
+[ext_resource type="Texture2D" uid="uid://bgw8p0410pf4y" path="res://Assets/ExportedIcons/Item4.png" id="21_n135f"]
 [ext_resource type="Texture2D" uid="uid://32xld85ogaef" path="res://Assets/ExportedIcons/Icon_Home.png" id="22_oaq87"]
+[ext_resource type="Texture2D" uid="uid://bxrjt1t6o027j" path="res://Assets/UI_Icons_By_VerzatileDev/Individual/Uicons_IndividualWhite/UI_IconsWhiteIndividual_g683.png" id="23_j6xc6"]
+[ext_resource type="Texture2D" uid="uid://bvir4r0a5c1pf" path="res://Assets/UI_Icons_By_VerzatileDev/Individual/Uicons_IndividualDark/UI_IconsDarkIndividual_g683.png" id="24_nqfbw"]
+[ext_resource type="Script" path="res://Gameplay Scenes/LossScreen.gd" id="30_1joor"]
+[ext_resource type="Texture2D" uid="uid://devrdgr3j6rho" path="res://Assets/ExportedIcons/Item3.png" id="30_gndb5"]
+[ext_resource type="Texture2D" uid="uid://dnt5cps2ewv2a" path="res://Assets/UI_Icons_By_VerzatileDev/Individual/Uicons_IndividualWhite/UI_IconsWhiteIndividual_g778.png" id="31_qex53"]
+[ext_resource type="Texture2D" uid="uid://3njpee8qpkg5" path="res://Assets/UI_Icons_By_VerzatileDev/Individual/Uicons_IndividualDark/UI_IconsDarkIndividual_g778.png" id="32_xd2b2"]
+[ext_resource type="Texture2D" uid="uid://ca4f0q5f4p77d" path="res://Assets/ExportedIcons/Icon_Trash.png" id="34_m42fb"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pw7mh"]
+texture = ExtResource("2_dhnxw")
+texture_region_size = Vector2i(108, 108)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ymea"]
 texture = ExtResource("2_kmmka")
@@ -97,6 +119,7 @@ texture_region_size = Vector2i(108, 108)
 tile_size = Vector2i(108, 108)
 sources/1 = SubResource("TileSetAtlasSource_0ymea")
 sources/2 = SubResource("TileSetAtlasSource_vogbq")
+sources/0 = SubResource("TileSetAtlasSource_pw7mh")
 
 [sub_resource type="Curve2D" id="Curve2D_n0c6g"]
 _data = {
@@ -146,7 +169,7 @@ anchor_mode = 0
 [node name="Towers" type="Node2D" parent="MainGrid"]
 
 [node name="PassiveIncomeTimer" type="Timer" parent="MainGrid"]
-wait_time = 10.0
+wait_time = 5.0
 autostart = true
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
@@ -272,6 +295,15 @@ offset_bottom = 72.0
 text = "25"
 horizontal_alignment = 1
 
+[node name="RemoveButton" type="TextureButton" parent="."]
+offset_left = 764.0
+offset_top = -90.0
+offset_right = 851.0
+offset_bottom = -4.0
+texture_normal = ExtResource("34_m42fb")
+ignore_texture_size = true
+stretch_mode = 0
+
 [node name="Lane1path" type="Path2D" parent="."]
 curve = SubResource("Curve2D_n0c6g")
 
@@ -305,6 +337,36 @@ texture_normal = ExtResource("18_wo4vb")
 texture_pressed = ExtResource("19_2tppn")
 ignore_texture_size = true
 stretch_mode = 0
+
+[node name="VictoryScreen" type="Node2D" parent="."]
+visible = false
+script = ExtResource("21_8x51s")
+
+[node name="TextureRect" type="TextureRect" parent="VictoryScreen"]
+offset_left = 125.0
+offset_top = 99.0
+offset_right = 765.0
+offset_bottom = 370.0
+texture = ExtResource("21_n135f")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VictoryScreen/TextureRect"]
+layout_mode = 0
+offset_left = 177.0
+offset_top = 54.0
+offset_right = 462.0
+offset_bottom = 131.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 37
+text = "Level Complete!"
+
+[node name="NextLevel" type="TextureButton" parent="VictoryScreen"]
+offset_left = 339.0
+offset_top = 324.0
+offset_right = 614.0
+offset_bottom = 508.0
+texture_normal = ExtResource("23_j6xc6")
+texture_pressed = ExtResource("24_nqfbw")
 
 [node name="PauseMenu" type="Node2D" parent="."]
 process_mode = 2
@@ -354,16 +416,51 @@ offset_right = 708.0
 offset_bottom = 536.0
 texture_normal = ExtResource("22_oaq87")
 
+[node name="LossScreen" type="Node2D" parent="."]
+visible = false
+script = ExtResource("30_1joor")
+
+[node name="TextureRect" type="TextureRect" parent="LossScreen"]
+offset_left = 181.0
+offset_top = 40.0
+offset_right = 667.0
+offset_bottom = 318.0
+texture = ExtResource("30_gndb5")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="LossScreen/TextureRect"]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 45.0
+offset_right = 401.0
+offset_bottom = 153.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 50
+text = "You Lose!"
+
+[node name="Retry" type="TextureButton" parent="LossScreen"]
+offset_left = 308.0
+offset_top = 323.0
+offset_right = 530.0
+offset_bottom = 529.0
+texture_normal = ExtResource("31_qex53")
+texture_pressed = ExtResource("32_xd2b2")
+
+[connection signal="end_level" from="." to="VictoryScreen" method="_on_basic_level_end_level"]
+[connection signal="lose_level" from="." to="LossScreen" method="_on_basic_level_lose_level"]
 [connection signal="child_exiting_tree" from="MainGrid/Towers" to="MainGrid" method="_on_towers_child_exiting_tree"]
 [connection signal="timeout" from="MainGrid/PassiveIncomeTimer" to="MainGrid" method="_on_passive_income_timer_timeout"]
 [connection signal="pressed" from="PanelContainer/Towers/Basic_Shooter_button" to="MainGrid" method="_on_tower_button_pressed"]
 [connection signal="pressed" from="PanelContainer/Towers/Resource_Generator_button" to="MainGrid" method="_on_resource_producer_button_pressed"]
 [connection signal="pressed" from="PanelContainer/Towers/Wall_button" to="MainGrid" method="_on_wall_button_pressed"]
 [connection signal="pressed" from="PanelContainer/Towers/Mine_button" to="MainGrid" method="_on_mine_button_pressed"]
+[connection signal="pressed" from="RemoveButton" to="MainGrid" method="_on_remove_button_pressed"]
 [connection signal="last_wave" from="SpawingAlgorithm" to="." method="_on_spawing_algorithm_last_wave"]
 [connection signal="spawn_new_wave" from="SpawingAlgorithm" to="." method="_on_spawing_algorithm_spawn_new_wave"]
 [connection signal="pressed" from="PauseButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="PauseButton" to="PauseMenu" method="_on_pause_button_pressed"]
+[connection signal="pressed" from="VictoryScreen/NextLevel" to="." method="_on_next_level_pressed"]
 [connection signal="pressed" from="PauseMenu/TextureRect/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/TextureRect/Resume" to="PauseMenu" method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/TextureRect/ExitToMenu" to="." method="_on_exit_to_menu_pressed"]
+[connection signal="pressed" from="LossScreen/Retry" to="." method="_on_retry_pressed"]

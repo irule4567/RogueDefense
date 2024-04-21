@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 EnemyProperties="*res://enemy_properties.gd"
 TowerProperties="*res://tower_properties.gd"
+GlobalVars="*res://Global_Vars.gd"
+SignalBus="*res://SignalBus.gd"
 
 [input]
 

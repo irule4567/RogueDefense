@@ -15,7 +15,8 @@ signal last_wave()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	credits = [1, 2, 3, 5, 8, 11, 14]
+	credits = GlobalVars.level_credits[GlobalVars.level]
+	#credits = [1, 2, 3, 5, 8, 11, 14]
 	num_waves = credits.size()
 	time_between_waves = 30
 	initial_wait = 15
@@ -29,11 +30,13 @@ func _process(delta):
 	pass
 
 func _set_new_wave(wave):
+	waveData = []
 	var rem_credits = credits[wave]
+	#print(rem_credits)
 	while rem_credits > 0:
 		var lane = randi() % 5 + 1
 		var enemy_num = randi() % EnemyProperties.enemy_data.size()
-		print(enemy_num)
+		#print(enemy_num)
 		while EnemyProperties.enemy_data.get(EnemyProperties.enemy_data.keys()[enemy_num]).weight > rem_credits:
 			enemy_num = randi() % EnemyProperties.enemy_data.size()
 		waveData.append([EnemyProperties.enemy_data[EnemyProperties.enemy_data.keys()[enemy_num]].name, lane])
