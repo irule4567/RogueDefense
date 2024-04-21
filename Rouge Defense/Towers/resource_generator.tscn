@@ -1,21 +1,21 @@
 [gd_scene load_steps=7 format=3 uid="uid://csm3s47ca5lix"]
 
-[ext_resource type="Script" path="res://Towers/resource_generator.gd" id="1_o3aea"]
-[ext_resource type="Texture2D" uid="uid://br3dym4s03iew" path="res://Assets/Tiny Swords (Update 010)/Resources/Gold Mine/GoldMine_Active.png" id="2_4ljjv"]
-[ext_resource type="Texture2D" uid="uid://dqfktphnydgkf" path="res://Assets/Tiny Swords (Update 010)/Resources/Gold Mine/GoldMine_Inactive.png" id="3_nk4hu"]
+[ext_resource type="Script" path="res://Towers/Resource_Generator.gd" id="1_cel7c"]
+[ext_resource type="Texture2D" uid="uid://br3dym4s03iew" path="res://Assets/Tiny Swords (Update 010)/Resources/Gold Mine/GoldMine_Active.png" id="2_1e2r1"]
+[ext_resource type="Texture2D" uid="uid://dqfktphnydgkf" path="res://Assets/Tiny Swords (Update 010)/Resources/Gold Mine/GoldMine_Inactive.png" id="3_1qq4r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iiyad"]
 size = Vector2(94, 104)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bfp6i"]
-atlas = ExtResource("3_nk4hu")
+atlas = ExtResource("3_1qq4r")
 region = Rect2(0, 0, 192, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ewiw1"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_4ljjv")
+"texture": ExtResource("2_1e2r1")
 }],
 "loop": true,
 "name": &"Active",
@@ -33,7 +33,7 @@ animations = [{
 [node name="Resource_Generator" type="Area2D"]
 light_mask = 8
 visibility_layer = 8
-script = ExtResource("1_o3aea")
+script = ExtResource("1_cel7c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 1)

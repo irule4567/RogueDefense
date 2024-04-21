@@ -5,7 +5,7 @@ var health = TowerProperties.tower_data["Mine"].get("health")
 var enemies_attacking
 var armed
 @onready var _animated_sprite = $Animation
-@onready var mainGrid = $/root/Testing/MainGrid
+@onready var mainGrid = get_node("../..")
 
 
 # Called when the node enters the scene tree for the first time.

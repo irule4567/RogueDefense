@@ -7,6 +7,14 @@ var enemy_data = {"Basic_enemy": {
 	"weight" : 1,
 	"attack": 1,
 	"attack_cooldown": 1
+},
+"Medium_enemy": {
+	"name": "Medium_enemy",
+	"health" : 26,
+	"speed" : 20,
+	"weight" : 2,
+	"attack": 1,
+	"attack_cooldown": 1
 }}
 # Note: attacks are currently done on a per-frame basis
 # May want to change to use a timer with attack cooldown instead

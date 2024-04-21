@@ -3,7 +3,7 @@ extends Area2D
 
 var health = TowerProperties.tower_data["Wall"].get("health")
 var enemies_attacking
-@onready var mainGrid = $/root/Testing/MainGrid
+@onready var mainGrid = get_node("../..")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

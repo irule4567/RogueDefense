@@ -15,7 +15,7 @@ var recharges = [] # Array of current recharge times for each tower. Currently j
 
 
 func _ready():
-	resource_count = 500
+	resource_count = 50
 	for i in TowerProperties.tower_data.keys():
 		#print(TowerProperties.tower_data.get(i))
 		deck.append(TowerProperties.tower_data.get(i))

@@ -17,8 +17,8 @@ signal last_wave()
 func _ready():
 	credits = [1, 2, 3, 5, 8, 11, 14]
 	num_waves = credits.size()
-	time_between_waves = 15
-	initial_wait = 1
+	time_between_waves = 30
+	initial_wait = 15
 	await get_tree().create_timer(initial_wait).timeout
 	_set_new_wave(0)
 	#waveData = [["Basic_Enemy", 1], ["Basic_Enemy", 2], ["Basic_Enemy", 3], ["Basic_Enemy", 4], ["Basic_Enemy", 5]]
@@ -29,9 +29,15 @@ func _process(delta):
 	pass
 
 func _set_new_wave(wave):
-	for i in credits[wave]:
+	var rem_credits = credits[wave]
+	while rem_credits > 0:
 		var lane = randi() % 5 + 1
-		waveData.append(["Basic_Enemy", lane])
+		var enemy_num = randi() % EnemyProperties.enemy_data.size()
+		print(enemy_num)
+		while EnemyProperties.enemy_data.get(EnemyProperties.enemy_data.keys()[enemy_num]).weight > rem_credits:
+			enemy_num = randi() % EnemyProperties.enemy_data.size()
+		waveData.append([EnemyProperties.enemy_data[EnemyProperties.enemy_data.keys()[enemy_num]].name, lane])
+		rem_credits = rem_credits - EnemyProperties.enemy_data.get(EnemyProperties.enemy_data.keys()[enemy_num]).weight
 	spawn_new_wave.emit(waveData)
 	await get_tree().create_timer(time_between_waves).timeout
 	#print("Timer ends")
