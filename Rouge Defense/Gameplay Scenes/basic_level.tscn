@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://crxk4sjgn3glw"]
+[gd_scene load_steps=48 format=3 uid="uid://crxk4sjgn3glw"]
 
 [ext_resource type="Script" path="res://Gameplay Scenes/testing.gd" id="1_ofgqn"]
 [ext_resource type="Texture2D" uid="uid://bd6sav1sa26m" path="res://Assets/basic_tileset_and_assets_standard/terrain_tiles_v2.png" id="2_dhnxw"]
@@ -14,15 +14,19 @@
 [ext_resource type="Texture2D" uid="uid://bkykkuwx7obbq" path="res://Assets/fence_tiles_icon.png" id="7_a2dux"]
 [ext_resource type="Texture2D" uid="uid://ryjqnx0fvu4c" path="res://Assets/Title.png" id="7_h83h8"]
 [ext_resource type="Texture2D" uid="uid://gr3svguljbxg" path="res://Assets/Barrel_Red_icon.png" id="8_gr7rw"]
+[ext_resource type="Script" path="res://Gameplay Scenes/Shooter_Tooltip.gd" id="9_mmdkb"]
 [ext_resource type="Texture2D" uid="uid://c346acmcbmoxe" path="res://Assets/GoldMine_Icon_pressed.png" id="9_yt1e3"]
 [ext_resource type="Texture2D" uid="uid://d06e5maf5a8fj" path="res://Assets/GoldMine_Icon_hover.png" id="10_n4hyc"]
 [ext_resource type="Texture2D" uid="uid://451qjmc0j0yj" path="res://Assets/fence_tiles_icon_pressed.png" id="12_85wjg"]
+[ext_resource type="Script" path="res://Gameplay Scenes/Generator_Tooltip.gd" id="13_bffeb"]
 [ext_resource type="Texture2D" uid="uid://mh7iv5g5gnxw" path="res://Assets/fence_tiles_icon_hover.png" id="13_unl2u"]
 [ext_resource type="Texture2D" uid="uid://de3t1myltwo7m" path="res://Assets/Barrel_Red_icon_pressed.png" id="15_7bt0j"]
 [ext_resource type="Texture2D" uid="uid://brakjsv1vppj4" path="res://Assets/Barrel_Red_icon_hover.png" id="16_5w3d6"]
+[ext_resource type="Script" path="res://Gameplay Scenes/Wall_Tooltip.gd" id="17_4cpgx"]
 [ext_resource type="Texture2D" uid="uid://c23unpbjef81b" path="res://Assets/UI_Icons_By_VerzatileDev/Individual/Uicons_IndividualWhite/UI_IconsWhiteIndividual_g685.png" id="18_wo4vb"]
 [ext_resource type="Texture2D" uid="uid://bsn4aetd4bjuq" path="res://Assets/UI_Icons_By_VerzatileDev/Individual/Uicons_IndividualDark/UI_IconsDarkIndividual_g685.png" id="19_2tppn"]
 [ext_resource type="Texture2D" uid="uid://dqdflkqs1hd63" path="res://Assets/ExportedIcons/Icon_Play.png" id="20_gugrg"]
+[ext_resource type="Script" path="res://Gameplay Scenes/Mine_Tooltip.gd" id="21_6lbwx"]
 [ext_resource type="Script" path="res://Gameplay Scenes/VictoryScreen.gd" id="21_8x51s"]
 [ext_resource type="Texture2D" uid="uid://sgoghr30xb3l" path="res://Assets/ExportedIcons/Icon_Skull.png" id="21_65rvl"]
 [ext_resource type="Texture2D" uid="uid://bgw8p0410pf4y" path="res://Assets/ExportedIcons/Item4.png" id="21_n135f"]
@@ -209,6 +213,16 @@ text = "100
 "
 horizontal_alignment = 1
 
+[node name="Shooter_Tooltip" type="RichTextLabel" parent="PanelContainer/Towers/Basic_Shooter_button"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 84.0
+offset_right = 100.0
+offset_bottom = 153.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Shoots arrows at enemies."
+script = ExtResource("9_mmdkb")
+
 [node name="Resource_Generator_button" type="TextureButton" parent="PanelContainer/Towers"]
 layout_mode = 0
 offset_left = 100.0
@@ -238,6 +252,16 @@ offset_bottom = 76.0
 text = "50"
 horizontal_alignment = 1
 
+[node name="Generator_Tooltip" type="RichTextLabel" parent="PanelContainer/Towers/Resource_Generator_button"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 85.0
+offset_right = 110.0
+offset_bottom = 161.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Generates additional resouces."
+script = ExtResource("13_bffeb")
+
 [node name="Wall_button" type="TextureButton" parent="PanelContainer/Towers"]
 layout_mode = 0
 offset_left = 200.0
@@ -265,6 +289,16 @@ offset_right = 65.0
 offset_bottom = 70.0
 text = "50"
 horizontal_alignment = 1
+
+[node name="Wall_Tooltip" type="RichTextLabel" parent="PanelContainer/Towers/Wall_button"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 88.0
+offset_right = 95.0
+offset_bottom = 154.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Blocks off enemies."
+script = ExtResource("17_4cpgx")
 
 [node name="Mine_button" type="TextureButton" parent="PanelContainer/Towers"]
 layout_mode = 0
@@ -294,6 +328,16 @@ offset_right = 75.0
 offset_bottom = 72.0
 text = "25"
 horizontal_alignment = 1
+
+[node name="Mine_Tooltip" type="RichTextLabel" parent="PanelContainer/Towers/Mine_button"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 86.0
+offset_right = 131.0
+offset_bottom = 169.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Explodes on enemies. Must be armed"
+script = ExtResource("21_6lbwx")
 
 [node name="RemoveButton" type="TextureButton" parent="."]
 offset_left = 764.0
@@ -450,9 +494,17 @@ texture_pressed = ExtResource("32_xd2b2")
 [connection signal="lose_level" from="." to="LossScreen" method="_on_basic_level_lose_level"]
 [connection signal="child_exiting_tree" from="MainGrid/Towers" to="MainGrid" method="_on_towers_child_exiting_tree"]
 [connection signal="timeout" from="MainGrid/PassiveIncomeTimer" to="MainGrid" method="_on_passive_income_timer_timeout"]
+[connection signal="mouse_entered" from="PanelContainer/Towers/Basic_Shooter_button" to="PanelContainer/Towers/Basic_Shooter_button/Shooter_Tooltip" method="_on_basic_shooter_button_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/Towers/Basic_Shooter_button" to="PanelContainer/Towers/Basic_Shooter_button/Shooter_Tooltip" method="_on_basic_shooter_button_mouse_exited"]
 [connection signal="pressed" from="PanelContainer/Towers/Basic_Shooter_button" to="MainGrid" method="_on_tower_button_pressed"]
+[connection signal="mouse_entered" from="PanelContainer/Towers/Resource_Generator_button" to="PanelContainer/Towers/Resource_Generator_button/Generator_Tooltip" method="_on_resource_generator_button_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/Towers/Resource_Generator_button" to="PanelContainer/Towers/Resource_Generator_button/Generator_Tooltip" method="_on_resource_generator_button_mouse_exited"]
 [connection signal="pressed" from="PanelContainer/Towers/Resource_Generator_button" to="MainGrid" method="_on_resource_producer_button_pressed"]
+[connection signal="mouse_entered" from="PanelContainer/Towers/Wall_button" to="PanelContainer/Towers/Wall_button/Wall_Tooltip" method="_on_wall_button_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/Towers/Wall_button" to="PanelContainer/Towers/Wall_button/Wall_Tooltip" method="_on_wall_button_mouse_exited"]
 [connection signal="pressed" from="PanelContainer/Towers/Wall_button" to="MainGrid" method="_on_wall_button_pressed"]
+[connection signal="mouse_entered" from="PanelContainer/Towers/Mine_button" to="PanelContainer/Towers/Mine_button/Mine_Tooltip" method="_on_mine_button_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/Towers/Mine_button" to="PanelContainer/Towers/Mine_button/Mine_Tooltip" method="_on_mine_button_mouse_exited"]
 [connection signal="pressed" from="PanelContainer/Towers/Mine_button" to="MainGrid" method="_on_mine_button_pressed"]
 [connection signal="pressed" from="RemoveButton" to="MainGrid" method="_on_remove_button_pressed"]
 [connection signal="last_wave" from="SpawingAlgorithm" to="." method="_on_spawing_algorithm_last_wave"]
