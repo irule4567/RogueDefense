@@ -13,6 +13,8 @@ var deck = [] # Array of tower names for towers available in the level
 var recharges = [] # Array of current recharge times for each tower. Currently just has whether the tower is recharged or not
 @onready var resource_label = $/root/BasicLevel/ResourceCount
 @onready var towers = $Towers
+@onready var tower_confirm = $TowerConfirm
+@onready var remove_confirm = $RemoveConfirm
 
 
 
@@ -47,21 +49,26 @@ func _process(delta):
 		##set_cell(1, tile, 1, Vector2i(0,0), 0)
 		#print(Dic[str(tile)])
 	# Check for click, selected tower, resources, tile exists, and recharge
-	if Input.is_action_pressed("Click"):
-		if building == true && TowerProperties.tower_data[Selected_tower].cost <= resource_count && Dic.has(str(tile)) && recharges[deck.find(TowerProperties.tower_data[Selected_tower])].time_left == 0:
-		#print("Place tower ", Selected_tower, " at position", Dic[str(tile)])
-			if Dic[str(tile)]["Taken"] == false: # Tower is placed
+	if building == true && TowerProperties.tower_data[Selected_tower].cost <= resource_count && Dic.has(str(tile)) && recharges[deck.find(TowerProperties.tower_data[Selected_tower])].time_left == 0:
+		tower_confirm.position = tile*Vector2i(108,108)
+		if Dic[str(tile)]["Taken"] == false: # Tower is placed
+			tower_confirm.show()
+			if Input.is_action_pressed("Click"):
+			#print("Place tower ", Selected_tower, " at position", Dic[str(tile)])
 				Dic[str(tile)]["Taken"] = true
 				var tower_button = get_node("../PanelContainer/Towers/" + Selected_tower + "_button")
 				tower_button.button_pressed = false
 				var new_tower = load("res://Towers/" + Selected_tower + ".tscn").instantiate()
 				get_node("Towers").add_child(new_tower, true)
-				print(type_string(typeof(tile)))
+				#print(type_string(typeof(tile)))
 				new_tower.position = tile*Vector2i(108,108)+Vector2i(54,54)
-				print(type_string(typeof(new_tower.position)))
+				#print(type_string(typeof(new_tower.position)))
 				
 				resource_count = resource_count - TowerProperties.tower_data[Selected_tower].cost
 				_set_tower_timer(Selected_tower)
+				
+				building = false
+				tower_confirm.hide()
 				
 				#var tower_timer = Timer.new()
 				#add_child(tower_timer)
@@ -70,15 +77,21 @@ func _process(delta):
 				#tower_timer.start()
 				#tower_timer.connect("timeout", self, "_on_timer_timeout")
 				#recharges[deck.find(TowerProperties.tower_data[Selected_tower])] = tower_timer
-		elif remove == true:
+		else: # hide indicator when on already placed tower
+			tower_confirm.hide()
+	elif remove == true:
+		remove_confirm.show()
+		remove_confirm.position = tile*Vector2i(108,108)
+		if Input.is_action_pressed("Click"):
+			remove_confirm.hide()
+			remove = false
 			Dic[str(tile)]["Taken"] = false
 			for i in towers.get_children():
-				print(type_string(typeof(i.position)))
+				#print(type_string(typeof(i.position)))
 				var converted_pos = Vector2i(i.position)
 				if converted_pos == tile*Vector2i(108,108)+Vector2i(54,54):
 					i.queue_free()
-		remove = false
-		building = false
+		
 
 
 

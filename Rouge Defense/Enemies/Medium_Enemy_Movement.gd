@@ -3,8 +3,11 @@ extends PathFollow2D
 var self_properties = EnemyProperties.enemy_data.get("Medium_enemy")
 var speed = self_properties["speed"]
 @onready var _animated_sprite = $Basic_enemy/Animation
+var curr_health
+var max_health
 
 func _ready():
+	max_health = self_properties["health"]
 	_animated_sprite.play("Walk")
 
 func _physics_process(delta):
@@ -32,3 +35,7 @@ func _on_animation_animation_changed():
 
 func _on_basic_enemy_death():
 	self.queue_free()
+
+
+func _on_basic_enemy_pass_health(health):
+	curr_health = health

@@ -198,15 +198,6 @@ offset_bottom = -15.0
 texture = ExtResource("6_52id5")
 expand_mode = 1
 
-[node name="RemoveConfirm" type="TextureRect" parent="MainGrid"]
-visible = false
-offset_left = -298.0
-offset_top = -116.0
-offset_right = -194.0
-offset_bottom = -13.0
-texture = ExtResource("34_m42fb")
-expand_mode = 1
-
 [node name="PanelContainer" type="PanelContainer" parent="."]
 offset_left = -3.0
 offset_top = -83.0
@@ -428,9 +419,6 @@ offset_top = -85.0
 offset_right = -7.0
 offset_bottom = -2.0
 
-[node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 30.0
-
 [node name="SpawingAlgorithm" type="Node" parent="."]
 script = ExtResource("5_xfpsw")
 
@@ -554,7 +542,6 @@ texture_pressed = ExtResource("32_xd2b2")
 
 [connection signal="end_level" from="." to="VictoryScreen" method="_on_basic_level_end_level"]
 [connection signal="lose_level" from="." to="LossScreen" method="_on_basic_level_lose_level"]
-[connection signal="start_new_wave" from="." to="SpawingAlgorithm" method="_on_basic_level_start_new_wave"]
 [connection signal="child_exiting_tree" from="MainGrid/Towers" to="MainGrid" method="_on_towers_child_exiting_tree"]
 [connection signal="timeout" from="MainGrid/PassiveIncomeTimer" to="MainGrid" method="_on_passive_income_timer_timeout"]
 [connection signal="mouse_entered" from="PanelContainer/Towers/Basic_Shooter_button" to="PanelContainer/Towers/Basic_Shooter_button/Shooter_Tooltip" method="_on_basic_shooter_button_mouse_entered"]
@@ -570,7 +557,6 @@ texture_pressed = ExtResource("32_xd2b2")
 [connection signal="mouse_exited" from="PanelContainer/Towers/Mine_button" to="PanelContainer/Towers/Mine_button/Mine_Tooltip" method="_on_mine_button_mouse_exited"]
 [connection signal="pressed" from="PanelContainer/Towers/Mine_button" to="MainGrid" method="_on_mine_button_pressed"]
 [connection signal="pressed" from="RemoveButton" to="MainGrid" method="_on_remove_button_pressed"]
-[connection signal="timeout" from="SpawnTimer" to="SpawingAlgorithm" method="_on_spawn_timer_timeout"]
 [connection signal="last_wave" from="SpawingAlgorithm" to="." method="_on_spawing_algorithm_last_wave"]
 [connection signal="spawn_new_wave" from="SpawingAlgorithm" to="." method="_on_spawing_algorithm_spawn_new_wave"]
 [connection signal="pressed" from="PauseButton" to="." method="_on_button_pressed"]

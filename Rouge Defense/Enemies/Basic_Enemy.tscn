@@ -174,9 +174,18 @@ scale = Vector2(1.89583, 1.77083)
 sprite_frames = SubResource("SpriteFrames_7evxg")
 animation = &"Death"
 
+[node name="HealthBar" type="ProgressBar" parent="Basic_enemy"]
+offset_left = -51.0
+offset_top = -44.0
+offset_right = 47.0
+offset_bottom = -17.0
+max_value = 10.0
+show_percentage = false
+
 [connection signal="area_entered" from="Basic_enemy" to="Basic_enemy" method="_on_area_entered"]
 [connection signal="area_exited" from="Basic_enemy" to="Basic_enemy" method="_on_area_exited"]
 [connection signal="attack" from="Basic_enemy" to="." method="_on_test_enemy_attack"]
 [connection signal="death" from="Basic_enemy" to="." method="_on_basic_enemy_death"]
+[connection signal="pass_health" from="Basic_enemy" to="." method="_on_basic_enemy_pass_health"]
 [connection signal="animation_changed" from="Basic_enemy/Animation" to="." method="_on_animation_animation_changed"]
 [connection signal="animation_finished" from="Basic_enemy/Animation" to="Basic_enemy" method="_on_animation_animation_finished"]

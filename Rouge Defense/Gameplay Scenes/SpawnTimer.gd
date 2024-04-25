@@ -1,17 +1,12 @@
-extends Node
+extends Timer
 
-var level = 0
-var level_credits = [[1, 2, 3, 5, 8, 11, 14], [1, 3, 4, 5, 8, 11, 14]]
-var num_levels = 2
-
-
-
+signal manual_timeout()
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
-
+	if is_stopped() == true:
+		manual_timeout.emit()

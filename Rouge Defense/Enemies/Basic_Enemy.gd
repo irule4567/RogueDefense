@@ -1,12 +1,17 @@
 extends Area2D
 
 var health = EnemyProperties.enemy_data["Basic_enemy"].get("health")
+var max_health = EnemyProperties.enemy_data["Basic_enemy"].get("health")
 @onready var _animated_sprite = $Animation
+@onready var health_bar = $HealthBar
 signal attack(is_attacking)
 signal death()
+signal pass_health(health)
 var dead # Used to prevent weird issues with death animation
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	health_bar.value = health
+	pass_health.emit(health)	
 	dead = false
 
 
@@ -27,6 +32,8 @@ func _on_area_entered(area):
 			if area.name.find(TowerProperties.tower_data[i]["attack_name"]) != -1: # Enemy is hit by a shot
 				#print(area.name)
 				health = health - TowerProperties.tower_data[i]["damage"]
+				health_bar.value = health
+				pass_health.emit(health)
 				await get_tree().create_timer(TowerProperties.tower_data[i]["attack_time_dissapate"]).timeout
 				if TowerProperties.tower_data[i]["type"] != "Insta": # remove area if it is a projectile and not attached to an insta that already freed itself
 					area.queue_free()
@@ -56,3 +63,5 @@ func _on_animation_animation_finished():
 	if _animated_sprite.animation == "Death":
 		#print("DEATH")
 		emit_signal("death")
+
+
