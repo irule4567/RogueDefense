@@ -34,10 +34,13 @@ func _process(delta):
 			recent_enemy_wave.erase(i)
 	if last_wave == false && !recent_enemy_wave.is_empty():
 		var curr_health = 0
+		#print(recent_enemy_wave)
 		for enemy in recent_enemy_wave:
-			curr_health = enemy.curr_health
+			curr_health = curr_health + enemy.curr_health
+		#print("curr_health: ", curr_health)
+		#print("total_wave_health: ", total_wave_health)
 		if curr_health < total_wave_health/2:
-			print("spawn timer manual stop")
+			#print("spawn timer manual stop")
 			spawn_timer.stop()
 			start_new_wave.emit()
 			
@@ -86,7 +89,10 @@ func game_over():
 
 func _on_next_level_pressed():
 	GlobalVars.level = GlobalVars.level + 1
-	get_tree().reload_current_scene()
+	if GlobalVars.level >= GlobalVars.num_levels: # End game if last level
+		get_tree().change_scene_to_file("res://Gameplay Scenes/main_menu.tscn")
+	else:
+		get_tree().reload_current_scene()
 
 
 func _on_retry_pressed():

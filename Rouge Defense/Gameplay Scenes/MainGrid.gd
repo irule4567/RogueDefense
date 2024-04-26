@@ -98,6 +98,7 @@ func _process(delta):
 func _on_tower_button_pressed():
 	Selected_tower = "Basic_Shooter"
 	building = true
+	remove = false
 
 
 func _on_passive_income_timer_timeout():
@@ -107,6 +108,7 @@ func _on_passive_income_timer_timeout():
 func _on_resource_producer_button_pressed():
 	Selected_tower = "Resource_Generator"
 	building = true
+	remove = false
 
 
 func _on_towers_child_exiting_tree(node):
@@ -117,6 +119,7 @@ func _on_towers_child_exiting_tree(node):
 func _on_wall_button_pressed():
 	Selected_tower = "Wall"
 	building = true
+	remove = false
 
 
 func _set_tower_timer(tower):
@@ -130,7 +133,9 @@ func _set_tower_timer(tower):
 func _on_mine_button_pressed():
 	Selected_tower = "Mine"
 	building = true
+	remove = false
 
 
 func _on_remove_button_pressed():
 	remove = true
+	building = false

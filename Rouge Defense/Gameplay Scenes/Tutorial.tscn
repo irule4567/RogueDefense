@@ -21,11 +21,8 @@ script = ExtResource("2_8ywqb")
 [node name="MainGrid" parent="." index="0"]
 script = ExtResource("2_hag14")
 
-[node name="SpawingAlgorithm" parent="." index="9"]
+[node name="SpawingAlgorithm" parent="." index="10"]
 script = null
-
-[node name="PauseButton" parent="." index="10"]
-visible = false
 
 [node name="TutorialText" type="CanvasLayer" parent="." index="11"]
 follow_viewport_enabled = true
@@ -105,6 +102,9 @@ layout_mode = 2
 [node name="Dialogue" type="Label" parent="TutorialText/TextboxContainer/MarginContainer/HBoxContainer" index="0"]
 layout_mode = 2
 text = "Test"
+
+[node name="PauseButton" parent="." index="12"]
+visible = false
 
 [connection signal="tutorial_over" from="." to="TutorialText" method="_on_tutorial_tutorial_over"]
 [connection signal="tutorial_gen_place" from="MainGrid" to="TutorialText" method="_on_main_grid_tutorial_gen_place"]
