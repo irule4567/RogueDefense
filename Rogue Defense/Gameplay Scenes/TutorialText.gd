@@ -9,7 +9,7 @@ extends CanvasLayer
 @onready var text_box = $TextboxContainer
 @onready var resource_area = $ResourceArea
 @onready var shooter_area = $ShooterArea
-@onready var dialogue = ["Hello.", "Welcome to Rouge Defense.", "Here I will teach you the basics of defending yourself.", 
+@onready var dialogue = ["Hello.", "Welcome to Rogue Defense.", "Here I will teach you the basics of defending yourself.", 
 "First, you’ll need to understand the basic mechanics of the game.", "Over here in the top left is your resource count.",
 "You need these resources to place your towers, which will show up here." ,"You generate resources over time, \nbut you’ll want to also place some resource producers to speed up your resource generation.",
 "Here, place a resource generator in the selected area.", "Great work.", "However, you’re going to need more than just resources to defend yourself.",
@@ -42,7 +42,7 @@ func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and dialogue_active == true:
 			dialogue_num = dialogue_num + 1
-			print(dialogue_num)
+			#print(dialogue_num)
 			if dialogue_num == 4:
 				resource_arrow.show()
 			if dialogue_num == 5:

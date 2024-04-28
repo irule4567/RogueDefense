@@ -36,7 +36,7 @@ func _process(delta):
 	pass
 
 func _set_new_wave():
-	print(wave)
+	#print(wave)
 	waveData = []
 	var rem_credits = credits[wave]
 	#print(rem_credits)

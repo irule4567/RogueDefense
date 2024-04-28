@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Rouge Defense"
+config/name="Rogue Defense"
 run/main_scene="res://Gameplay Scenes/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
@@ -21,6 +21,10 @@ EnemyProperties="*res://enemy_properties.gd"
 TowerProperties="*res://tower_properties.gd"
 GlobalVars="*res://Global_Vars.gd"
 SignalBus="*res://SignalBus.gd"
+
+[display]
+
+window/stretch/mode="viewport"
 
 [input]
 

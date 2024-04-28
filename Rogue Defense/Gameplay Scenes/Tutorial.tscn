@@ -18,11 +18,8 @@ border_color = Color(1, 1, 1, 1)
 [node name="Tutorial" instance=ExtResource("1_u46d6")]
 script = ExtResource("2_8ywqb")
 
-[node name="MainGrid" parent="." index="0"]
+[node name="MainGrid" parent="." index="1"]
 script = ExtResource("2_hag14")
-
-[node name="SpawingAlgorithm" parent="." index="10"]
-script = null
 
 [node name="TutorialText" type="CanvasLayer" parent="." index="11"]
 follow_viewport_enabled = true
@@ -103,7 +100,10 @@ layout_mode = 2
 layout_mode = 2
 text = "Test"
 
-[node name="PauseButton" parent="." index="12"]
+[node name="SpawingAlgorithm" parent="." index="12"]
+script = null
+
+[node name="PauseButton" parent="." index="13"]
 visible = false
 
 [connection signal="tutorial_over" from="." to="TutorialText" method="_on_tutorial_tutorial_over"]

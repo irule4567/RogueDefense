@@ -1,17 +1,20 @@
 [gd_scene load_steps=6 format=3 uid="uid://u6xvo0fuqcfe"]
 
-[ext_resource type="Texture2D" uid="uid://ryjqnx0fvu4c" path="res://Assets/Title.png" id="1_aeggq"]
 [ext_resource type="Script" path="res://Gameplay Scenes/TutorialButton.gd" id="2_idlc3"]
 [ext_resource type="Script" path="res://Gameplay Scenes/StartButton.gd" id="2_jelbv"]
 [ext_resource type="Texture2D" uid="uid://bnsxgfhu3oibc" path="res://Assets/ExportedIcons/Icon_X.png" id="4_r10ax"]
 [ext_resource type="Script" path="res://Gameplay Scenes/ExitButton.gd" id="5_g0yak"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bb62"]
+bg_color = Color(0.27791, 0.509769, 0.979548, 1)
+
 [node name="MainMenu" type="Node2D"]
 
-[node name="TitleBackground" type="TextureRect" parent="."]
-offset_right = 696.0
-offset_bottom = 564.0
-texture = ExtResource("1_aeggq")
+[node name="Panel" type="Panel" parent="."]
+show_behind_parent = true
+offset_right = 684.0
+offset_bottom = 570.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6bb62")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
@@ -43,6 +46,14 @@ texture_normal = ExtResource("4_r10ax")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("5_g0yak")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 136.0
+offset_top = 168.0
+offset_right = 503.0
+offset_bottom = 278.0
+theme_override_font_sizes/normal_font_size = 45
+text = "Rogue Defense"
 
 [connection signal="pressed" from="TutorialButton" to="TutorialButton" method="_on_pressed"]
 [connection signal="pressed" from="StartButton" to="StartButton" method="_on_pressed"]
